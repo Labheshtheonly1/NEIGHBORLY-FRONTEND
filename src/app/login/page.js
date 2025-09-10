@@ -57,7 +57,7 @@ export default function LoginPage() {
       <div className="relative flex-1">
         {/* Blurred Background Layer */}
         <div
-          className="absolute inset-0 bg-cover bg-center filter blur-sm"
+          className="absolute inset-0 bg-cover bg-center filter "
           style={{ backgroundImage: `url('/loginright.svg')` }}
         ></div>
 
@@ -68,7 +68,7 @@ export default function LoginPage() {
               <h2 className="text-4xl font-bold">Login</h2>
               <p className="mt-2 text-lg text-gray-400">
                 New Here?{' '}
-                <Link href="/register" className="text-[#54D1DC] hover:underline">
+                <Link href="/#about" className="text-[#54D1DC] hover:underline">
                   Register
                 </Link>
               </p>
