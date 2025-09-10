@@ -76,7 +76,7 @@ export default function LoginPage() {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="email" className="block text-xl font-medium text-white">Email</label>
+                <label htmlFor="email" className="block text-xl font-medium text-white"></label>
                 <input
                   id="email"
                   name="email"
@@ -88,7 +88,7 @@ export default function LoginPage() {
                 />
               </div>
               <div>
-                <label htmlFor="password" className="block text-xl font-medium text-white">Password</label>
+                <label htmlFor="password" className="block text-xl font-medium text-white"></label>
                 <input
                   id="password"
                   name="password"
@@ -106,7 +106,7 @@ export default function LoginPage() {
                   type="checkbox"
                   className="h-4 w-4 text-[#54D1DC] focus:ring-[#54D1DC] border-gray-700 rounded bg-gray-800"
                 />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-400">
+                <label htmlFor="remember-me" className="ml-4 block text-sm text-gray-400">
                   Remember me
                 </label>
               </div>
