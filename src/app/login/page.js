@@ -22,6 +22,9 @@ export default function LoginPage() {
     console.log('Google Sign-in clicked');
   };
 
+  // Generate an array for the firefly particles
+  const particles = Array.from({ length: 90 });
+
   return (
     <div className={`flex min-h-screen bg-gray-950 text-white relative ${poppins.className}`}>
       {/* "Neighborly" Title at Top Right */}
@@ -31,7 +34,7 @@ export default function LoginPage() {
 
       {/* Left section with the illustration */}
       <div className="flex-1 hidden md:flex items-center justify-center p-8">
-        <div className="w-full max-w-md h-auto">
+        <div className="w-full max-w-md h-auto relative float-animation">
           <Image
             src="/loginbuilding.svg"
             alt="Society Building"
@@ -39,6 +42,18 @@ export default function LoginPage() {
             height={500}
             className="w-full h-auto"
           />
+          {particles.map((_, index) => (
+            <div
+              key={index}
+              className="firefly-particle"
+              style={{
+                left: `${Math.random() * 100}%`,
+                bottom: `${Math.random() * 100}px`,
+                animationDelay: `${Math.random() * 2}s`,
+                animationDuration: `${2 + Math.random() * 2}s`,
+              }}
+            />
+          ))}
         </div>
       </div>
 
@@ -60,25 +75,27 @@ export default function LoginPage() {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-400">Email</label>
+              <label htmlFor="email" className="block text-sm font-medium text-gray">Email</label>
               <input
                 id="email"
                 name="email"
                 type="email"
                 autoComplete="email"
                 required
-                className="mt-1 block w-full rounded-md border-2 border-white bg-black text-white shadow-sm focus:border-[#54D1DC] focus:ring focus:ring-[#54D1DC] focus:ring-opacity-50 px-4 py-4 transition-transform duration-200 ease-in-out focus:-translate-y-1"
+                className="mt-1 block w-full rounded-md border-2 border-white bg-black text-white shadow-sm focus:border-[#54D1DC] focus:ring focus:ring-[#54D1DC] focus:ring-opacity-50 px-4 py-4"
+                placeholder="Email"
               />
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-400">Password</label>
+              <label htmlFor="password" className="block text-sm font-medium text-gray">Password</label>
               <input
                 id="password"
                 name="password"
                 type="password"
                 autoComplete="current-password"
                 required
-                className="mt-1 block w-full rounded-md border-2 border-white bg-black text-white shadow-sm focus:border-[#54D1DC] focus:ring focus:ring-[#54D1DC] focus:ring-opacity-50 px-4 py-4 transition-transform duration-200 ease-in-out focus:-translate-y-1"
+                className="mt-1 block w-full rounded-md border-2 border-white bg-black text-white shadow-sm focus:border-[#54D1DC] focus:ring focus:ring-[#54D1DC] focus:ring-opacity-50 px-4 py-4"
+                placeholder="Password"
               />
             </div>
             <div className="flex items-center">
@@ -94,9 +111,9 @@ export default function LoginPage() {
             </div>
             <button
               type="submit"
-              className="w-full py-5 px-4 border border-transparent rounded-md shadow-sm text-lg font-bold text-gray-950 bg-[#54D1DC] hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#54D1DC] transition-all duration-200 ease-in-out hover:-translate-y-1 hover:shadow-lg"
+              className="w-full py-5 px-4 border border-transparent rounded-md shadow-sm text-lg font-bold text-gray-950 bg-[#54D1DC] hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#54D1DC]"
             >
-              Sign in
+              <span className="text-xl">Sign in</span>
             </button>
           </form>
 
@@ -109,7 +126,7 @@ export default function LoginPage() {
           <div className="flex justify-center">
             <button
               onClick={handleGoogleSignIn}
-              className="py-2 px-4 border border-gray-700 rounded-md shadow-sm text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 flex items-center transition-all duration-200 ease-in-out hover:-translate-y-1 hover:shadow-lg"
+              className="py-2 px-4 border border-gray-700 rounded-md shadow-sm text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 flex items-center"
             >
               <Image
                 src="/google.svg"
