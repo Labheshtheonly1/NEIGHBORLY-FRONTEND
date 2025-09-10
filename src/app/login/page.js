@@ -57,7 +57,7 @@ export default function LoginPage() {
       <div className="relative flex-1">
         {/* Blurred Background Layer */}
         <div
-          className="absolute inset-0 bg-cover bg-center filter blur-md"
+          className="absolute inset-0 bg-cover bg-center filter blur-sm"
           style={{ backgroundImage: `url('/loginright.svg')` }}
         ></div>
 
@@ -114,7 +114,7 @@ export default function LoginPage() {
                 type="submit"
                 className="w-full py-5 px-4 border border-transparent rounded-md shadow-sm text-lg font-bold text-gray-950 bg-[#358289] hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#54D1DC] transition-all duration-200 ease-in-out hover:-translate-y-1 hover:shadow-lg"
               >
-                <span className="text-xl">Sign in</span>
+                <span className="text-2xl">Sign in</span>
               </button>
             </form>
 
@@ -127,7 +127,7 @@ export default function LoginPage() {
             <div className="flex justify-center">
               <button
                 onClick={handleGoogleSignIn}
-                className="py-2 px-4 border border-gray-700 rounded-md shadow-sm text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 flex items-center transition-all duration-200 ease-in-out hover:-translate-y-1 hover:shadow-lg"
+                className="py-2 px-4 border border-gray-700 rounded-md shadow-sm text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 flex items-center transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-lg"
               >
                 <Image
                   src="/google.svg"
