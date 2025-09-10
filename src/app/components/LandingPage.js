@@ -16,6 +16,26 @@ export default function LandingPage() {
 
       {/* Container for the image, glow, and particles */}
       <div className="relative my-15 bottom-0 flex justify-center">
+        <div
+          className="glowing-particle absolute top-270 left-[100%]"
+          style={{ animationDelay: "0s", animationDuration: "2s" }}
+        ></div>{" "}
+        <div
+          className="glowing-particle absolute bottom-0 left-[95%]"
+          style={{ animationDelay: "0.8s", animationDuration: "2.5s" }}
+        ></div>{" "}
+        <div
+          className="glowing-particle absolute bottom-0 left-[90%]"
+          style={{ animationDelay: "1.5s", animationDuration: "3s" }}
+        ></div>{" "}
+        <div
+          className="glowing-particle absolute bottom-[10%] left-[85%]"
+          style={{ animationDelay: "0.3s", animationDuration: "2.2s" }}
+        ></div>{" "}
+        <div
+          className="glowing-particle absolute bottom-[10%] left-[80%]"
+          style={{ animationDelay: "1.1s", animationDuration: "2.8s" }}
+        ></div>
         <Image
           src="/landing-house.svg"
           width={510}
