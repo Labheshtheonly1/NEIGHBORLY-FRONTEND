@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Bot, X } from "lucide-react";
+import api from "../api/api";
 
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,30 +17,20 @@ export default function Chatbot() {
     setMsg("");
 
     try {
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userMessage.content }),
-      });
-
-      if (!res.ok) {
-        const errText = await res.text();
-        console.error("API error response:", errText);
-        throw new Error(`Request failed with status ${res.status}`);
+      const response = await api.post("/api/chatbot", { query: userMessage.content });
+      const data = response.data;
+      let botContent = data.reply || data.answer;
+      if (!botContent) {
+        botContent = `${JSON.stringify(data)}`;
       }
-
-      const data = await res.json();
-      console.log("Bot response:", data);
-
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: data.answer || "No response" },
+        { role: "assistant", content: botContent },
       ]);
     } catch (err) {
-      console.error("Chatbot error:", err);
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: "⚠️ Error: " + err.message },
+        { role: "assistant", content: "⚠️ Error: " + (err.response?.data?.message || err.message) },
       ]);
     }
   };
