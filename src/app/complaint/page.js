@@ -8,16 +8,34 @@ export default function ComplaintPage() {
       <aside className="w-64 bg-black p-6">
         <nav className="space-y-2">
           <div className="flex items-center gap-3 px-4 py-3 bg-gray-500 rounded text-white font-medium">
-            Dashboard
+            <div className="grid grid-cols-2 gap-1 w-4 h-4">
+              <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
+              <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
+              <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
+              <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
+            </div>
+            <a href="/dashboard"> Admin Dashboard </a>
           </div>
-          <div className="px-4 py-3 text-gray-300 hover:text-white cursor-pointer">
-            Profile
+          <div className="px-4 py-3  text-white hover:text-teal-400 transition-colors duration-200 relative group">
+            <a href="/complaint"> Complaints </a>
           </div>
-          <div className="px-4 py-3 text-gray-300 hover:text-white cursor-pointer">
+          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
+            <a href="/notice">Notices </a>
+          </div>
+          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
+            Bookings
+          </div>
+          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
+            <a href="/finance"> Budget</a>
+          </div>
+          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
+            Visitors
+          </div>
+          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
             Settings
           </div>
-          <div className="px-4 py-3 text-gray-300 hover:text-white cursor-pointer mt-8">
-            logout
+          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group mt-8">
+            Profile
           </div>
         </nav>
       </aside>

@@ -7,7 +7,7 @@ export default function DashboardPage() {
   return (
     <div className="flex min-h-screen bg-black text-white">
       {/* Sidebar */}
-      <aside className="w-64 bg-gradient-to-r from-[#605C5C] to-[#363535] p-6">
+      <aside className="w-64 bg-black p-6">
         <nav className="space-y-2">
           <div className="flex items-center gap-3 px-4 py-3 bg-gray-500 rounded text-white font-medium">
             <div className="grid grid-cols-2 gap-1 w-4 h-4">
@@ -16,16 +16,28 @@ export default function DashboardPage() {
               <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
               <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
             </div>
-            Dashboard
+            Admin Dashboard
           </div>
-          <div className="px-4 py-3 text-gray-300 hover:text-white cursor-pointer">
-            Profile
+          <div className="px-4 py-3  text-white hover:text-teal-400 transition-colors duration-200 relative group">
+            <a href="/complaint"> Complaints </a>
           </div>
-          <div className="px-4 py-3 text-gray-300 hover:text-white cursor-pointer">
+          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
+            <a href="/notice">Notices </a>
+          </div>
+          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
+            Bookings
+          </div>
+          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
+            <a href="/finance"> Budget</a>
+          </div>
+          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
+            Visitors
+          </div>
+          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
             Settings
           </div>
-          <div className="px-4 py-3 text-gray-300 hover:text-white cursor-pointer mt-8">
-            logout
+          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group mt-8">
+            Profile
           </div>
         </nav>
       </aside>
@@ -56,13 +68,32 @@ export default function DashboardPage() {
           </div>
 
           {/* Top Right White Rectangle */}
-          <div className="col-span-3 bg-white rounded-lg"></div>
+          {/* Top Right White Rectangle - Notices */}
+          <Link
+            href="/notice"
+            className="col-span-3 bg-white/10 rounded-lg p-6 relative hover:scale-105 transition"
+          >
+            <h3 className="text-teal-400 text-3xl font-bold mb-4">NOTICES AND Communication </h3>
+            <div className="space-y-2 text-gray-300 text-lg font-bold">
+              <div>Upload Notice</div>
+              <div>View Notices</div>
+            </div>
+            <div className="absolute bottom-6 right-6">
+              <Image
+                src="/notice.svg"
+                width={100}
+                height={100}
+                alt="notice"
+                className="animate-float"
+              />
+            </div>
+          </Link>
 
           {/* Row 2 */}
           {/* Finance and Budget - Square (1 col) */}
           <Link
             href="/finance"
-            className="bg-gray-800 rounded-lg p-6 relative hover:scale-105 transition"
+            className="bg-white/10 rounded-lg p-6 relative hover:scale-105 transition"
           >
             <h3 className="text-teal-400 text-lg font-bold mb-3">
               Finance and Budget
