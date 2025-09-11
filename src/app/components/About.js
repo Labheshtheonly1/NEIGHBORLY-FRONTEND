@@ -20,6 +20,16 @@ const AnimatedItem = ({ id, text, imgSrc, isReversed }) => {
     visible: { opacity: 1, x: 0, skewX: 0, transition: { duration: 1.5, ease: 'easeOut' } },
   };
 
+  // Determine the glow color class based on the item ID
+  let glowColorClass = '';
+  if (id === 'transparency') {
+    glowColorClass = 'bg-purple-500'; // Purple for transparency
+  } else if (id === 'accountability') {
+    glowColorClass = 'bg-sky-400';    // Sky blue for accountability
+  } else if (id === 'inclusivity') {
+    glowColorClass = 'bg-white';      // White for inclusivity
+  }
+
   return (
     <div
       ref={ref}
@@ -33,6 +43,8 @@ const AnimatedItem = ({ id, text, imgSrc, isReversed }) => {
         >
           <div className="relative animate-float">
             <Image src={imgSrc} alt={text} width={500} height={500} />
+            {/* Conditional glow element */}
+            <div className={`absolute -bottom-10 left-1/2 -translate-x-1/2 w-4/5 h-20 rounded-full blur-3xl opacity-60 ${glowColorClass}`}></div>
           </div>
         </motion.div>
         <div className="flex-1 p-4 text-center z-20">
@@ -41,7 +53,7 @@ const AnimatedItem = ({ id, text, imgSrc, isReversed }) => {
             variants={textVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, amount: 0.5 }} // <-- Changed once to false
+            viewport={{ once: false, amount: 0.5 }}
           >
             {text}
           </motion.h3>
