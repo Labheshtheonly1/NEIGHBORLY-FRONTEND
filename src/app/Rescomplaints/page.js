@@ -57,7 +57,7 @@ const ComplaintsPage = () => {
               <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
               <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
             </div>
-            <a href="/Resdashboard"> User Dashboard </a>
+            <a href="/resdashboard"> User Dashboard </a>
           </div>
           <div className="px-4 py-3 bg-gray-500 rounded text-white font-medium relative group">
             <a href="/Rescomplaints"> Complaints </a>
@@ -69,7 +69,7 @@ const ComplaintsPage = () => {
             <a href="/bookings">Bookings</a>
           </div>
           <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
-            <a href="/finance"> Budget</a>
+            <a href="/resbudget"> Budget</a>
           </div>
           <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
             <a href="/visitors">Visitors</a>

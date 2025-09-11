@@ -16,7 +16,7 @@ export default function ResDashboardPage() {
               <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
               <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
             </div>
-            <a href="/Resdashboard"> User Dashboard </a>
+            <a href="/resdashboard"> User Dashboard </a>
           </div>
           <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
             <a href="/Rescomplaints"> Complaints </a>
@@ -28,7 +28,7 @@ export default function ResDashboardPage() {
             <a href="/bookings">Bookings</a>
           </div>
           <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
-            <a href="/finance"> Budget</a>
+            <a href="/resbudget"> Budget</a>
           </div>
           <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
             <a href="/visitors">Visitors</a>
@@ -102,7 +102,7 @@ export default function ResDashboardPage() {
           {/* Row 2 */}
           {/* Finance and Budget - Square (1 col) */}
           <Link
-            href="/finance"
+            href="/resbudget"
             className="bg-white/10 rounded-lg p-6 relative hover:scale-105 transition"
           >
             <h3 className="text-teal-400 text-lg font-bold mb-3">

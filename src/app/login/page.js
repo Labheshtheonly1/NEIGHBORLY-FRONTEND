@@ -1,11 +1,10 @@
-"use client";
-
-import Link from "next/link";
-import Image from "next/image";
-import { Poppins } from "next/font/google";
-import { useState, useEffect } from "react";
-import api from "../api/api";
-import { useRouter } from "next/navigation";
+'use client';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Poppins } from 'next/font/google';
+import { useState, useEffect } from 'react';
+import api from '../api/api'
+import { useRouter } from 'next/navigation';
 
 const poppins = Poppins({
   weight: ["400", "700"],
