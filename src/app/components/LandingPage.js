@@ -1,10 +1,72 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import api from "../api/api"; // ✅ use axios instance
 
 export default function LandingPage() {
   const [showModal, setShowModal] = useState(false);
   const [step, setStep] = useState("roles");
+
+  // Form state
+  const [adminData, setAdminData] = useState({
+    fullName: "",
+    email: "",
+    phone_number: "",
+    societyName: "",
+    address: "",
+    city: "",
+    state: "",
+    postal_code: "",
+  });
+  const [residentData, setResidentData] = useState({
+    fullName: "",
+    email: "",
+    phone_number: "",
+    flatNumber: "",
+    block: "",
+    floor: "",
+  });
+  const [staffData, setStaffData] = useState({
+    fullName: "",
+    email: "",
+    phone_number: "",
+    department: "",
+    role: "",
+    shiftTiming: "",
+  });
+  const [commonPassword, setCommonPassword] = useState("");
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setStep("roles");
+    setAdminData({
+      fullName: "",
+      email: "",
+      phone_number: "",
+      societyName: "",
+      address: "",
+      city: "",
+      state: "",
+      postal_code: "",
+    });
+    setResidentData({
+      fullName: "",
+      email: "",
+      phone_number: "",
+      flatNumber: "",
+      block: "",
+      floor: "",
+    });
+    setStaffData({
+      fullName: "",
+      email: "",
+      phone_number: "",
+      department: "",
+      role: "",
+      shiftTiming: "",
+    });
+    setCommonPassword("");
+  };
 
   return (
     <section
@@ -13,27 +75,22 @@ export default function LandingPage() {
     >
       <div className="max-w-7xl mx-auto w-full">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-          {/* Left Side - Text Content */}
+          {/* Left content */}
           <div className="flex-1 max-w-2xl">
-            {/* Title */}
             <div className="mb-8">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-2">
-                Digital Society.
-              </h1>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#358289] leading-tight">
                 Simplified.
               </h1>
             </div>
 
-            {/* Description */}
             <div className="mb-10 opacity-90">
               <p className="text-xl md:text-2xl lg:text-3xl leading-relaxed">
-                Unifying residents, owners, and workers on <br />
+                Unifying residents, owners, and workers on
+                <br />
                 one transparent platform
               </p>
             </div>
 
-            {/* Register Button */}
             <button
               onClick={() => setShowModal(true)}
               className="rounded-lg bg-[#358289] font-bold px-8 py-4 text-2xl lg:text-3xl text-white shadow-lg hover:scale-105 hover:bg-[#2a6b72] transition-all duration-300 hover:shadow-2xl"
@@ -42,42 +99,8 @@ export default function LandingPage() {
             </button>
           </div>
 
-          {/* Right Side - Floating House with Particles */}
+          {/* Right illustration */}
           <div className="flex-1 flex justify-center items-center relative min-h-[500px]">
-            {/* Particle Container */}
-            <div className="absolute inset-0 overflow-hidden">
-              {/* Glowing particles */}
-              <div
-                className="glowing-particle absolute top-1/4 right-1/4"
-                style={{ animationDelay: "0s", animationDuration: "2s" }}
-              ></div>
-              <div
-                className="glowing-particle absolute bottom-1/4 right-1/3"
-                style={{ animationDelay: "0.8s", animationDuration: "2.5s" }}
-              ></div>
-              <div
-                className="glowing-particle absolute bottom-1/3 right-1/2"
-                style={{ animationDelay: "1.5s", animationDuration: "3s" }}
-              ></div>
-              <div
-                className="glowing-particle absolute top-1/3 right-2/3"
-                style={{ animationDelay: "0.3s", animationDuration: "2.2s" }}
-              ></div>
-              <div
-                className="glowing-particle absolute bottom-1/2 right-3/4"
-                style={{ animationDelay: "1.1s", animationDuration: "2.8s" }}
-              ></div>
-              <div
-                className="glowing-particle absolute top-2/3 left-1/4"
-                style={{ animationDelay: "2s", animationDuration: "2.3s" }}
-              ></div>
-              <div
-                className="glowing-particle absolute top-1/2 left-1/3"
-                style={{ animationDelay: "1.2s", animationDuration: "2.7s" }}
-              ></div>
-            </div>
-
-            {/* House Image Container */}
             <div className="relative z-10">
               <Image
                 src="/landing-house.svg"
@@ -88,8 +111,6 @@ export default function LandingPage() {
                 className="animate-float w-full h-auto max-w-md lg:max-w-lg"
                 priority
               />
-
-              {/* Glow effect under house */}
               <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3/4 h-20 bg-[#54D1DC] opacity-40 blur-3xl"></div>
             </div>
           </div>
@@ -99,18 +120,13 @@ export default function LandingPage() {
       {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center z-50 px-4">
-          {/* Overlay */}
           <div
             className="absolute inset-0 bg-black/70 backdrop-blur-lg"
-            onClick={() => {
-              setShowModal(false);
-              setStep("roles");
-            }}
+            onClick={handleCloseModal}
           ></div>
 
-          {/* Modal Content */}
           <div className="relative z-10 w-full max-w-2xl rounded-2xl bg-[url('/register.png')] shadow-2xl border border-white/90 p-6 md:p-10 max-h-[90vh] overflow-y-auto">
-            {/* Role Selection */}
+            {/* Role selection */}
             {step === "roles" && (
               <>
                 <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-8">
@@ -139,12 +155,15 @@ export default function LandingPage() {
               </>
             )}
 
-            {/* ADMIN Steps */}
+            {/* Admin Steps */}
             {step === "adminStep1" && (
               <FormStep
                 role="Admin"
                 title="Step 1: Personal Information"
-                fields={["Name*", "Email*", "Phone No*"]}
+                fields={["fullName", "email", "phone_number"]}
+                fieldLabels={["Name*", "Email*", "Phone No*"]}
+                formData={adminData}
+                setFormData={setAdminData}
                 onBack={() => setStep("roles")}
                 onNext={() => setStep("adminStep2")}
               />
@@ -154,12 +173,21 @@ export default function LandingPage() {
                 role="Admin"
                 title="Step 2: Society Information"
                 fields={[
+                  "societyName",
+                  "address",
+                  "city",
+                  "state",
+                  "postal_code",
+                ]}
+                fieldLabels={[
                   "Society Name*",
                   "Address*",
                   "City*",
                   "State*",
                   "Postal Code*",
                 ]}
+                formData={adminData}
+                setFormData={setAdminData}
                 onBack={() => setStep("adminStep1")}
                 onNext={() => setStep("adminStep3")}
               />
@@ -167,21 +195,41 @@ export default function LandingPage() {
             {step === "adminStep3" && (
               <FinalStep
                 role="Admin"
+                password={commonPassword}
+                setPassword={setCommonPassword}
                 onBack={() => setStep("adminStep2")}
-                onSubmit={() => {
-                  alert("✅ Admin Registered Successfully!");
-                  setShowModal(false);
-                  setStep("roles");
+                onSubmit={async () => {
+                  try {
+                    const payload = { ...adminData, password: commonPassword };
+                    const response = await api.post(
+                      "/api/auth/register/owner",
+                      payload
+                    );
+                    if (response.status === 201) {
+                      alert("✅ Admin Registered Successfully!");
+                      handleCloseModal();
+                    }
+                  } catch (err) {
+                    console.error("Admin registration failed:", err);
+                    alert(
+                      `❌ Registration failed: ${
+                        err.response?.data?.message || err.message
+                      }`
+                    );
+                  }
                 }}
               />
             )}
 
-            {/* RESIDENT Steps */}
+            {/* Resident Steps */}
             {step === "residentStep1" && (
               <FormStep
                 role="Resident"
                 title="Step 1: Personal Information"
-                fields={["Name*", "Email*", "Phone No*"]}
+                fields={["fullName", "email", "phone_number"]}
+                fieldLabels={["Name*", "Email*", "Phone No*"]}
+                formData={residentData}
+                setFormData={setResidentData}
                 onBack={() => setStep("roles")}
                 onNext={() => setStep("residentStep2")}
               />
@@ -190,7 +238,10 @@ export default function LandingPage() {
               <FormStep
                 role="Resident"
                 title="Step 2: Flat / Block Information"
-                fields={["Flat Number*", "Block*", "Floor*"]}
+                fields={["flatNumber", "block", "floor"]}
+                fieldLabels={["Flat Number*", "Block*", "Floor*"]}
+                formData={residentData}
+                setFormData={setResidentData}
                 onBack={() => setStep("residentStep1")}
                 onNext={() => setStep("residentStep3")}
               />
@@ -198,21 +249,44 @@ export default function LandingPage() {
             {step === "residentStep3" && (
               <FinalStep
                 role="Resident"
+                password={commonPassword}
+                setPassword={setCommonPassword}
                 onBack={() => setStep("residentStep2")}
-                onSubmit={() => {
-                  alert("✅ Resident Registered Successfully!");
-                  setShowModal(false);
-                  setStep("roles");
+                onSubmit={async () => {
+                  try {
+                    const payload = {
+                      ...residentData,
+                      password: commonPassword,
+                    };
+                    const response = await api.post(
+                      "/api/auth/register/resident",
+                      payload
+                    );
+                    if (response.status === 201) {
+                      alert("✅ Resident Registered Successfully!");
+                      handleCloseModal();
+                    }
+                  } catch (err) {
+                    console.error("Resident registration failed:", err);
+                    alert(
+                      `❌ Registration failed: ${
+                        err.response?.data?.message || err.message
+                      }`
+                    );
+                  }
                 }}
               />
             )}
 
-            {/* STAFF Steps */}
+            {/* Staff Steps */}
             {step === "staffStep1" && (
               <FormStep
                 role="Staff"
                 title="Step 1: Personal Information"
-                fields={["Name*", "Email*", "Phone No*"]}
+                fields={["fullName", "email", "phone_number"]}
+                fieldLabels={["Name*", "Email*", "Phone No*"]}
+                formData={staffData}
+                setFormData={setStaffData}
                 onBack={() => setStep("roles")}
                 onNext={() => setStep("staffStep2")}
               />
@@ -221,7 +295,10 @@ export default function LandingPage() {
               <FormStep
                 role="Staff"
                 title="Step 2: Work Information"
-                fields={["Department*", "Role*", "Shift Timing*"]}
+                fields={["department", "role", "shiftTiming"]}
+                fieldLabels={["Department*", "Role*", "Shift Timing*"]}
+                formData={staffData}
+                setFormData={setStaffData}
                 onBack={() => setStep("staffStep1")}
                 onNext={() => setStep("staffStep3")}
               />
@@ -229,25 +306,31 @@ export default function LandingPage() {
             {step === "staffStep3" && (
               <FinalStep
                 role="Staff"
+                password={commonPassword}
+                setPassword={setCommonPassword}
                 onBack={() => setStep("staffStep2")}
-                onSubmit={() => {
-                  alert("✅ Staff Registered Successfully!");
-                  setShowModal(false);
-                  setStep("roles");
+                onSubmit={async () => {
+                  try {
+                    const payload = { ...staffData, password: commonPassword };
+                    const response = await api.post(
+                      "/api/auth/register/staff",
+                      payload
+                    );
+                    if (response.status === 201) {
+                      alert("✅ Staff Registered Successfully!");
+                      handleCloseModal();
+                    }
+                  } catch (err) {
+                    console.error("Staff registration failed:", err);
+                    alert(
+                      `❌ Registration failed: ${
+                        err.response?.data?.message || err.message
+                      }`
+                    );
+                  }
                 }}
               />
             )}
-
-            {/* Close button */}
-            <button
-              onClick={() => {
-                setShowModal(false);
-                setStep("roles");
-              }}
-              className="absolute top-4 right-4 text-white/70 hover:text-white text-2xl font-bold w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-all"
-            >
-              ×
-            </button>
           </div>
         </div>
       )}
@@ -256,20 +339,25 @@ export default function LandingPage() {
 }
 
 /* Reusable Form Step Component */
-function FormStep({ role, title, fields, onBack, onNext }) {
-  const [inputs, setInputs] = useState(Array(fields.length).fill(""));
+function FormStep({
+  role,
+  title,
+  fields,
+  fieldLabels,
+  formData,
+  setFormData,
+  onBack,
+  onNext,
+}) {
   const [error, setError] = useState("");
 
-  const handleChange = (i, val) => {
-    const newInputs = [...inputs];
-    newInputs[i] = val;
-    setInputs(newInputs);
-    // Clear error when user starts typing
+  const handleChange = (field, val) => {
+    setFormData({ ...formData, [field]: val });
     if (error) setError("");
   };
 
   const handleNext = () => {
-    const emptyFields = inputs.some((val) => val.trim() === "");
+    const emptyFields = fields.some((field) => !formData[field].trim());
     if (emptyFields) {
       setError("⚠️ Please fill all required fields.");
     } else {
@@ -280,29 +368,34 @@ function FormStep({ role, title, fields, onBack, onNext }) {
 
   return (
     <div>
-      <h2 className="text-xl md:text-2xl font-bold text-white text-center mb-6">{role} Registration</h2>
+      <h2 className="text-xl md:text-2xl font-bold text-white text-center mb-6">
+        {role} Registration
+      </h2>
       <p className="text-lg mb-6 text-gray-300">{title}</p>
-
       <div className="space-y-4">
         {fields.map((field, i) => (
           <input
-            key={i}
-            type={field.toLowerCase().includes('email') ? 'email' : field.toLowerCase().includes('phone') ? 'tel' : 'text'}
-            placeholder={field}
-            value={inputs[i]}
-            onChange={(e) => handleChange(i, e.target.value)}
+            key={field}
+            type={
+              field.toLowerCase().includes("email")
+                ? "email"
+                : field.toLowerCase().includes("phone")
+                ? "tel"
+                : "text"
+            }
+            placeholder={fieldLabels[i]}
+            value={formData[field]}
+            onChange={(e) => handleChange(field, e.target.value)}
             className="w-full p-3 rounded-lg bg-black/60 border border-white/30 text-white placeholder-gray-400 focus:border-[#54D1DC] focus:outline-none focus:ring-2 focus:ring-[#54D1DC]/20 transition-all"
             required
           />
         ))}
       </div>
-
       {error && (
         <div className="mt-4 p-3 bg-red-900/30 border border-red-500/50 rounded-lg">
           <p className="text-red-300 text-sm">{error}</p>
         </div>
       )}
-
       <div className="flex justify-between mt-8 gap-4">
         <button
           onClick={onBack}
@@ -321,9 +414,7 @@ function FormStep({ role, title, fields, onBack, onNext }) {
   );
 }
 
-/* Final Step Component (Password Setup) */
-function FinalStep({ role, onBack, onSubmit }) {
-  const [password, setPassword] = useState("");
+function FinalStep({ role, password, setPassword, onBack, onSubmit }) {
   const [confirm, setConfirm] = useState("");
   const [checked, setChecked] = useState(false);
   const [error, setError] = useState("");
@@ -346,9 +437,12 @@ function FinalStep({ role, onBack, onSubmit }) {
 
   return (
     <div>
-      <h2 className="text-xl md:text-2xl font-bold text-white text-center mb-6">{role} Registration</h2>
+      <h2 className="text-xl md:text-2xl font-bold text-white text-center mb-6">
+        {role} Registration
+      </h2>
       <p className="text-lg mb-6 text-gray-300">Step 3: Account Setup</p>
 
+      {/* Passwords */}
       <div className="space-y-4">
         <div className="relative">
           <input
@@ -370,7 +464,6 @@ function FinalStep({ role, onBack, onSubmit }) {
             {showPassword ? "👁️" : "👁️‍🗨️"}
           </button>
         </div>
-
         <input
           type={showPassword ? "text" : "password"}
           placeholder="Confirm Password*"
@@ -384,6 +477,7 @@ function FinalStep({ role, onBack, onSubmit }) {
         />
       </div>
 
+      {/* Terms */}
       <div className="flex items-start gap-3 mt-6 mb-6">
         <input
           type="checkbox"
@@ -395,17 +489,29 @@ function FinalStep({ role, onBack, onSubmit }) {
           }}
           className="w-5 h-5 mt-1 rounded border-white/30 bg-black/60 text-[#54D1DC] focus:ring-[#54D1DC]/20"
         />
-        <label htmlFor="terms" className="text-sm text-gray-300 leading-relaxed">
-          I agree to all the <span className="text-[#54D1DC] underline cursor-pointer hover:text-[#4bc5d1]">Terms and Conditions</span> and <span className="text-[#54D1DC] underline cursor-pointer hover:text-[#4bc5d1]">Privacy Policy</span>
+        <label
+          htmlFor="terms"
+          className="text-sm text-gray-300 leading-relaxed"
+        >
+          I agree to all the{" "}
+          <span className="text-[#54D1DC] underline cursor-pointer hover:text-[#4bc5d1]">
+            Terms and Conditions
+          </span>{" "}
+          and{" "}
+          <span className="text-[#54D1DC] underline cursor-pointer hover:text-[#4bc5d1]">
+            Privacy Policy
+          </span>
         </label>
       </div>
 
+      {/* Error */}
       {error && (
         <div className="mb-4 p-3 bg-red-900/30 border border-red-500/50 rounded-lg">
           <p className="text-red-300 text-sm">{error}</p>
         </div>
       )}
 
+      {/* Buttons */}
       <div className="flex justify-between gap-4">
         <button
           onClick={onBack}
