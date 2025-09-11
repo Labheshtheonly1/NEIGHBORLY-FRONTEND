@@ -16,7 +16,7 @@ export default function DashboardPage() {
               <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
               <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
             </div>
-            Admin Dashboard
+            <a href="/dashboard"> Admin Dashboard </a>
           </div>
           <div className="px-4 py-3  text-white hover:text-teal-400 transition-colors duration-200 relative group">
             <a href="/complaint"> Complaints </a>
@@ -53,19 +53,30 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <h2 className="text-3xl font-bold mb-6">Dashboard</h2>
-
-        {/* Custom Grid Layout */}
-        <div className="grid grid-cols-4 grid-rows-2 gap-6">
-          {/* Square Card */}
-          <div className="col-span-2 row-span-1">
-            <GradientCard
-              title="Complaint Tracking"
-              items={["Track Complaints", "Resolve Complaints"]}
-              gradient="from-gray-800 to-gray-900"
-              href="/dashboard/complaint"
-            />
-          </div>
+        {/* Grid Layout */}
+        <div className="grid grid-cols-5 grid-rows-2 gap-6 h-[500px]">
+          {/* Complaint Tracking - Rectangle spanning 2 cols */}
+          <Link
+            href="/complaint"
+            className="col-span-2 bg-white/10 rounded-lg p-6 relative hover:scale-105 transition"
+          >
+            <h3 className="text-teal-400 text-3xl font-bold mb-4">
+              Complaint Tracking
+            </h3>
+            <div className="space-y-2 text-gray-300 text-lg font-bold">
+              <div>Track Complaints</div>
+              <div>Resolve Complaints</div>
+            </div>
+            <div className="absolute bottom-6 right-6">
+              <Image
+                src="/alert.svg"
+                width={100}
+                height={100}
+                alt="alert"
+                className="animate-float"
+              />
+            </div>
+          </Link>
 
           {/* Top Right White Rectangle */}
           {/* Top Right White Rectangle - Notices */}
@@ -73,7 +84,7 @@ export default function DashboardPage() {
             href="/notice"
             className="col-span-3 bg-white/10 rounded-lg p-6 relative hover:scale-105 transition"
           >
-            <h3 className="text-teal-400 text-3xl font-bold mb-4">NOTICES AND Communication </h3>
+            <h3 className="text-teal-400 text-3xl font-bold mb-4">NOTICES</h3>
             <div className="space-y-2 text-gray-300 text-lg font-bold">
               <div>Upload Notice</div>
               <div>View Notices</div>
