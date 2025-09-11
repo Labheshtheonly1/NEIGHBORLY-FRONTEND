@@ -78,11 +78,15 @@ export default function LandingPage() {
           {/* Left content */}
           <div className="flex-1 max-w-2xl">
             <div className="mb-8">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#358289] leading-tight">
-                Simplified.
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+                Digital Society. 
               </h1>
+      
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#358289] leading-tight">
+               Simplified.
+              </h1>
+            
             </div>
-
             <div className="mb-10 opacity-90">
               <p className="text-xl md:text-2xl lg:text-3xl leading-relaxed">
                 Unifying residents, owners, and workers on
@@ -93,7 +97,7 @@ export default function LandingPage() {
 
             <button
               onClick={() => setShowModal(true)}
-              className="rounded-lg bg-[#358289] font-bold px-8 py-4 text-2xl lg:text-3xl text-white shadow-lg hover:scale-105 hover:bg-[#2a6b72] transition-all duration-300 hover:shadow-2xl"
+              className="rounded-lg bg-[#358289] font-bold px-8 py-4  text-2xl lg:text-2xl text-white shadow-lg hover:scale-105 hover:bg-[#2a6b72] transition-all duration-300 hover:shadow-2xl"
             >
               REGISTER
             </button>
@@ -493,11 +497,11 @@ function FinalStep({ role, password, setPassword, onBack, onSubmit }) {
           htmlFor="terms"
           className="text-sm text-gray-300 leading-relaxed"
         >
-          I agree to all the{" "}
+          I agree to all the
           <span className="text-[#54D1DC] underline cursor-pointer hover:text-[#4bc5d1]">
             Terms and Conditions
-          </span>{" "}
-          and{" "}
+          </span>
+          and
           <span className="text-[#54D1DC] underline cursor-pointer hover:text-[#4bc5d1]">
             Privacy Policy
           </span>
