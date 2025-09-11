@@ -16,10 +16,10 @@ export default function ResDashboardPage() {
               <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
               <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
             </div>
-            <a href="/resdashboard"> User Dashboard </a>
+            <a href="/Resdashboard"> User Dashboard </a>
           </div>
           <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
-            <a href="/complaints"> Complaints </a>
+            <a href="/Rescomplaints"> Complaints </a>
           </div>
           <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
             <a href="/notices">Notices </a>
