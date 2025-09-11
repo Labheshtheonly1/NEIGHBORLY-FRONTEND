@@ -1,63 +1,44 @@
 "use client";
 import { Bell } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-
-function GradientCard({ title, items, gradient, href }) {
-  return (
-    <Link href={href}>
-      <div
-        className={`rounded-xl shadow p-6 text-white bg-gradient-to-br ${gradient} 
-        hover:scale-[1.03] hover:shadow-lg transition-transform cursor-pointer`}
-      >
-        <h3 className="font-semibold mb-2">{title}</h3>
-        {items && (
-          <ul className="space-y-1 text-sm">
-            {items.map((item, i) => (
-              <li key={i}>{item}</li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </Link>
-  );
-}
 
 export default function DashboardPage() {
   return (
     <div className="flex min-h-screen bg-black text-white">
       {/* Sidebar */}
-      <aside className="w-70 bg-white/10 p-8 flex flex-col">
-        <h1 className="text-2xl font-bold mb-8">Dashboard</h1>
-        <nav className="space-y-4">
-          <Link href="/dashboard">
-            <span className="block w-full text-left px-3 py-2 rounded-md bg-gray-700 text-white font-semibold">
-              Dashboard
-            </span>
-          </Link>
-          <Link href="/profile">
-            <span className="block w-full text-left px-3 py-2 rounded-md text-gray-400 hover:text-white">
-              Profile
-            </span>
-          </Link>
-          <Link href="/settings">
-            <span className="block w-full text-left px-3 py-2 rounded-md text-gray-400 hover:text-white">
-              Settings
-            </span>
-          </Link>
-          <Link href="/logout">
-            <span className="block w-full text-left px-3 py-2 rounded-md text-gray-400 hover:text-white">
-              Logout
-            </span>
-          </Link>
+      <aside className="w-64 bg-gradient-to-r from-[#605C5C] to-[#363535] p-6">
+        <nav className="space-y-2">
+          <div className="flex items-center gap-3 px-4 py-3 bg-gray-500 rounded text-white font-medium">
+            <div className="grid grid-cols-2 gap-1 w-4 h-4">
+              <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
+              <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
+              <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
+              <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
+            </div>
+            Dashboard
+          </div>
+          <div className="px-4 py-3 text-gray-300 hover:text-white cursor-pointer">
+            Profile
+          </div>
+          <div className="px-4 py-3 text-gray-300 hover:text-white cursor-pointer">
+            Settings
+          </div>
+          <div className="px-4 py-3 text-gray-300 hover:text-white cursor-pointer mt-8">
+            logout
+          </div>
         </nav>
       </aside>
 
       {/* Main content */}
       <main className="flex-1 p-8">
-        {/* Top bar */}
-        <div className="flex justify-end mb-6 relative">
-          <Bell className="w-6 h-6 text-yellow-400" />
-          <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+        {/* Header */}
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-bold">HELLO ! ADMIN,</h1>
+          <div className="relative">
+            <Bell className="w-6 h-6 text-yellow-400" />
+            <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
+          </div>
         </div>
 
         <h2 className="text-3xl font-bold mb-6">Dashboard</h2>
@@ -74,35 +55,38 @@ export default function DashboardPage() {
             />
           </div>
 
-          {/* Rectangle Card */}
-          <div className="col-span-1  px-4 py-1 row-span-1">
-            <GradientCard
-              title="Finance and Budget"
-              items={["Control and Insights", "Track Expenses"]}
-              gradient="from-gray-800 to-gray-900"
-              href="/finance"
-            />
-          </div>
+          {/* Top Right White Rectangle */}
+          <div className="col-span-3 bg-white rounded-lg"></div>
 
-          {/* Small Square */}
-          <div className="relative flex flex-col justify-center ">
-            <GradientCard
-              title="Community Notices"
-              items={["Post Announcements", "View Notices"]}
-              gradient="from-gray-800 to-gray-900"
-              href="/notices"
-            />
-          </div>
+          {/* Row 2 */}
+          {/* Finance and Budget - Square (1 col) */}
+          <Link
+            href="/finance"
+            className="bg-gray-800 rounded-lg p-6 relative hover:scale-105 transition"
+          >
+            <h3 className="text-teal-400 text-lg font-bold mb-3">
+              Finance and Budget
+            </h3>
+            <div className="space-y-1 text-gray-300 font-bold mb-4">
+              <div>Control and Insights</div>
+              <div>Track Expenses</div>
+            </div>
+            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/12">
+              <Image
+                src="/pie.svg"
+                width={80}
+                height={90}
+                alt="pie-chart"
+                className="animate-float-slow"
+              />
+            </div>
+          </Link>
 
-          {/* Rectangle wide */}
-          <div className=" col-span-2 row-span-1">
-            <GradientCard
-              title="Maintenance"
-              items={["Track Expenses", "Schedule Repairs"]}
-              gradient="from-gray-800 to-gray-900"
-              href="/maintenance"
-            />
-          </div>
+          {/* Bottom Middle White Rectangle */}
+          <div className="col-span-2 bg-white rounded-lg"></div>
+
+          {/* Bottom Right White Rectangle */}
+          <div className="col-span-2 bg-white rounded-lg"></div>
         </div>
       </main>
     </div>

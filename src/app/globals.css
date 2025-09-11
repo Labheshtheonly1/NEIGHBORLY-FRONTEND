@@ -40,6 +40,12 @@ body {
     transform: translateY(-20px);
   }
 }
+ .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+.animate-float-slow {
+          animation: float 4s ease-in-out infinite;
+        }
 
 /* Glowing particle animation */
 @keyframes glow-pulse {
@@ -275,3 +281,6 @@ button:active {
             font-weight: 500;
             line-height: 1.5;
         }
+
+
+

@@ -88,7 +88,7 @@ export default function LandingPage() {
             
             </div>
             <div className="mb-10 opacity-90">
-              <p className="text-xl md:text-2xl lg:text-3xl leading-relaxed">
+              <p className="text-xl md:text-2xl lg:text-3xl opacity-85 leading-relaxed">
                 Unifying residents, owners, and workers on
                 <br />
                 one transparent platform

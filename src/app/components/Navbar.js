@@ -33,7 +33,7 @@ export default function Navbar() {
           <div className="max-w-7xl mx-auto px-4">
             <div className="flex items-center justify-center">
               <div className="hidden md:block px-1 py-3 rounded-full shadow-lg ">
-                <Image src="/logo.png" width={200} height={500} alt="log" />
+                <Image src="/logo.png" width={250} height={250} alt="log" className="absolute top-2 left-7" />
               </div>
               <div className="flex items-center gap-4">
                 {/* Desktop Navigation */}

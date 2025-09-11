@@ -16,7 +16,7 @@ export const metadata = {
   title: "Neighborly",
   description: "",
   icons: {
-    icon: [{ url: "/image.png" }],
+    icon: [{ url: "/loginbuilding.svg" }],
     
   },
 };
