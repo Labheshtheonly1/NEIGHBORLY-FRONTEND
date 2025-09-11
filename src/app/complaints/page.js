@@ -4,74 +4,25 @@ import { useState } from 'react';
 
 // Mock data for the complaints list
 const initialComplaints = [
-  { id: 1, title: 'Network Outage', description: 'The internet connection has been down for 2 hours.' },
-  { id: 2, title: 'Slow Loading', description: 'Dashboard is taking too long to load on mobile.' },
+  { id: 1, title: 'Network Outage', description: 'The internet connection has been down for 2 hours.', status: 'Resolved' },
+  { id: 2, title: 'Slow Loading', description: 'Dashboard is taking too long to load on mobile.', status: 'In progress' },
 ];
 
-// Functional File Upload Area Component
-const FileUploadArea = ({ onClose }) => {
-  const [file, setFile] = useState(null);
-
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    if (selectedFile && selectedFile.type.startsWith('image/')) {
-      setFile(selectedFile);
-    } else {
-      alert('Please select a valid image file.');
-    }
-  };
-
-  const handleDrop = (e) => {
-    e.preventDefault();
-    const droppedFile = e.dataTransfer.files[0];
-    if (droppedFile && droppedFile.type.startsWith('image/')) {
-      setFile(droppedFile);
-    } else {
-      alert('Please drop a valid image file.');
-    }
-  };
-
-  const handleUpload = () => {
-    if (file) {
-      console.log('Uploading file:', file);
-      // Here you would implement your API call to upload the file
-      alert('File uploaded successfully!');
-      setFile(null); // Reset after upload
-      onClose();
-    } else {
-      alert('Please select an image to upload.');
-    }
-  };
-
-  return (
-    <div className="w-[50rem] bg-[#1C1C1E] p-8 rounded-2xl border border-[#2c2c2e] flex flex-col items-center justify-center space-y-6">
-      <div
-        className="w-full h-48 border-2 border-dashed border-gray-600 rounded-lg flex flex-col items-center justify-center text-gray-400 cursor-pointer"
-        onDragOver={(e) => e.preventDefault()}
-        onDrop={handleDrop}
-        onClick={() => document.getElementById('fileInput').click()}
-      >
-        <input
-          id="fileInput"
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-          className="hidden"
-        />
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12 h-12 mb-2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l3.75 3.75M12 9.75L8.25 13.5m-3.75 6a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12 18a.75.75 0 100-1.5.75.75 0 000 1.5zM12 18a.75.75 0 100-1.5.75.75 0 000 1.5zM15.75 1.5a.75.75 0 100-1.5.75.75 0 000 1.5zM18.75 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z" />
-        </svg>
-        <p>Drag and drop your file here</p>
-        {file && <p className="text-white mt-2">{file.name}</p>}
-      </div>
-      <button
-        onClick={handleUpload}
-        className="px-8 py-3 bg-[#54D1DC] text-gray-950 font-bold rounded-full"
-      >
-        Upload
-      </button>
-    </div>
-  );
+// Cloud Upload Area Component
+const CloudUploadArea = () => {
+    return (
+        <div className="flex flex-col items-center justify-center space-y-4">
+            <div className="w-full h-48 border-2 border-dashed border-gray-600 rounded-lg flex flex-col items-center justify-center text-gray-400">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16 text-gray-400 mb-2">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M11.2929 4.29289C11.6834 3.90237 12.3166 3.90237 12.7071 4.29289L16.7071 8.29289C17.0976 8.68342 17.0976 9.31658 16.7071 9.70711C16.3166 10.0976 15.6834 10.0976 15.2929 9.70711L13 7.41421V16C13 16.5523 12.5523 17 12 17C11.4477 17 11 16.5523 11 16V7.41421L8.70711 9.70711C8.31658 10.0976 7.68342 10.0976 7.29289 9.70711C6.90237 9.31658 6.90237 8.68342 7.29289 8.29289L11.2929 4.29289ZM6 18C6 17.4477 6.44772 17 7 17H17C17.5523 17 18 17.4477 18 18C18 18.5523 17.5523 19 17 19H7C6.44772 19 6 18.5523 6 18ZM4 12V13H5V12H4ZM19 12V13H20V12H19ZM12 21C11.4477 21 11 20.5523 11 20C11 19.4477 11.4477 19 12 19C12.5523 19 13 19.4477 13 20C13 20.5523 12.5523 21 12 21ZM4 15V16H5V15H4ZM19 15V16H20V15H19Z" fill="currentColor"/>
+                </svg>
+                <p>Drag and drop your file here</p>
+            </div>
+            <button className="px-8 py-3 bg-[#358289] text-white text-lg font-bold rounded-lg">
+                Upload
+            </button>
+        </div>
+    );
 };
 
 const ComplaintsPage = () => {
@@ -91,24 +42,25 @@ const ComplaintsPage = () => {
       <aside className="w-64 flex flex-col justify-between py-8 px-6 bg-gradient-to-r from-[#2a2a2a] to-[#0d0d0d] shadow-[10px_0_20px_0_rgba(0,0,0,0.6)] border-r border-gray-800">
         <div>
           <div className="flex items-center space-x-2 mb-12">
-            <img src="/logo.svg" alt="Logo" className="w-12 h-12" />
+            <img src="/logo.svg" alt="Logo" className="w-40 h-40" />
           </div>
           <nav className="space-y-4">
             <a
               href="/dashboard"
-              className="block p-3 rounded-md text-white font-semibold bg-[#414141] shadow-[5px_0_10px_-5px_rgba(0,0,0,0.4)]"
+              className="block p-3 rounded-md font-semibold transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-xl
+                bg-[#414141] text-white shadow-[5px_0_10px_-5px_rgba(0,0,0,0.4)]"
             >
               Dashboard
             </a>
             <a
               href="/dashboard/profile"
-              className="block p-3 rounded-md text-gray-400 font-medium hover:text-white transition-colors duration-200"
+              className="block p-3 rounded-md text-gray-400 font-medium transition-colors duration-200 hover:bg-gray-800 hover:text-white"
             >
               Profile
             </a>
             <a
               href="/dashboard/settings"
-              className="block p-3 rounded-md text-gray-400 font-medium hover:text-white transition-colors duration-200"
+              className="block p-3 rounded-md text-gray-400 font-medium transition-colors duration-200 hover:bg-gray-800 hover:text-white"
             >
               Settings
             </a>
@@ -123,54 +75,62 @@ const ComplaintsPage = () => {
 
       {/* Main Content Area */}
       <main className="flex-1 p-12">
-        <h1 className="text-4xl font-extrabold mb-2 text-white">
-          Dashboard <span className="text-[#54D1DC] font-normal">&gt; Complaint</span>
+        <h1 className="text-xl font-normal mb-2 text-white flex items-center space-x-2">
+          <span className="text-gray-400">Dashboard</span>
+          <img src="/tri.svg" alt="separator" className="h-4 w-4" />
+          <span>Complaint</span>
         </h1>
-        <h2 className="text-3xl font-bold text-[#54D1DC] mb-12">Write Complaint</h2>
+        <h2 className="text-3xl font-bold text-[#358289] mb-12">Write Complaint</h2>
         
         <section className="mb-12 flex justify-center">
-            {showFileUpload ? (
-              <FileUploadArea onClose={() => setShowFileUpload(false)} />
-            ) : (
-                <div className="w-[50rem] bg-[#1C1C1E] p-8 rounded-2xl border border-[#2c2c2e]">
-                    <div className="flex items-center justify-center space-x-4 mb-6">
-                      <button
-                        type="submit"
-                        form="complaint-form"
-                        className="px-6 py-3 bg-[#54D1DC] text-gray-950 font-bold rounded-full transition-transform transform hover:scale-105"
-                      >
-                        Create Complaint
-                      </button>
-                      <button
-                        onClick={() => setShowFileUpload(true)}
-                        className="px-6 py-3 bg-[#333333] text-gray-400 font-bold rounded-full transition-transform transform hover:scale-105"
-                      >
-                        Add Media/Files
-                      </button>
+            <div className="w-[50rem] bg-[#1C1C1E] p-8 rounded-2xl border border-[#2c2c2e] transition-all duration-300 transform hover:-translate-y-1">
+                <div className="flex justify-center items-center mb-6">
+                    <div className="flex bg-[#333333] rounded-full overflow-hidden">
+                        <button
+                            onClick={() => setShowFileUpload(false)}
+                            className={`px-6 py-3 font-bold transition-colors duration-300 ${!showFileUpload ? 'bg-[#358289] text-gray-950' : 'text-[#358289]'}`}
+                        >
+                            Create Complaint
+                        </button>
+                        <button
+                            onClick={() => setShowFileUpload(true)}
+                            className={`px-6 py-3 font-bold transition-colors duration-300 ${showFileUpload ? 'bg-[#358289] text-gray-950' : 'text-[#358289]'}`}
+                        >
+                            Add Media/Files
+                        </button>
                     </div>
+                </div>
+                {showFileUpload ? (
+                  <CloudUploadArea />
+                ) : (
                     <form id="complaint-form" className="space-y-6">
                       <input
                         type="text"
                         placeholder="Name"
-                        className="w-full p-4 bg-[#2C2C2E] text-white rounded-xl placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#54D1DC] border border-[#444444]"
+                        className="w-full p-4 bg-[#2C2C2E] text-white rounded-xl placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#358289] border border-[#444444]"
                       />
                       <textarea
                         placeholder="Description"
                         rows="6"
-                        className="w-full p-4 bg-[#2C2C2E] text-white rounded-xl placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#54D1DC] resize-none border border-[#444444]"
+                        className="w-full p-4 bg-[#2C2C2E] text-white rounded-xl placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#358289] resize-none border border-[#444444]"
                       />
                     </form>
-                </div>
-            )}
+                )}
+            </div>
         </section>
 
         <section>
-          <h3 className="text-2xl font-semibold mb-6 text-[#54D1DC]">My Complaints</h3>
+          <h3 className="text-2xl font-semibold mb-6 text-[#358289]">My Complaints</h3>
           <div className="space-y-4">
-            {initialComplaints.map((complaint) => (
-              <div key={complaint.id} className="bg-[#1C1C1E] p-6 rounded-xl shadow-md">
-                <h4 className="text-xl font-semibold text-[#54D1DC]">{complaint.title}</h4>
-                <p className="mt-2 text-gray-400">{complaint.description}</p>
+            {complaints.map((complaint) => (
+              <div key={complaint.id} className="bg-[#1C1C1E] p-6 rounded-xl shadow-md flex justify-between items-center transition-all duration-300 transform hover:-translate-y-1">
+                <div>
+                    <h4 className="text-xl font-semibold text-[#358289]">{complaint.title}</h4>
+                    <p className="mt-2 text-gray-400">{complaint.description}</p>
+                </div>
+                <span className="text-sm font-semibold text-gray-400">
+                    {complaint.status}
+                </span>
               </div>
             ))}
           </div>
