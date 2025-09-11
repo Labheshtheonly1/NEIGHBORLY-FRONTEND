@@ -38,47 +38,48 @@ const ComplaintsPage = () => {
 
   return (
     <div className="flex min-h-screen bg-[#111111] text-white">
-      {/* Left Sidebar */}
-      <aside className="w-64 flex flex-col justify-between py-8 px-6 bg-gradient-to-r from-[#2a2a2a] to-[#0d0d0d] shadow-[10px_0_20px_0_rgba(0,0,0,0.6)] border-r border-gray-800">
-        <div>
-          <div className="flex items-center space-x-2 mb-12">
-            <img src="/logo.svg" alt="Logo" className="w-40 h-40" />
+      {/* User Sidebar */}
+      <aside className="w-64 bg-black p-6">
+        <nav className="space-y-2">
+          <div className="flex items-center gap-3 px-4 py-3 text-white font-medium">
+            <div className="grid grid-cols-2 gap-1 w-4 h-4">
+              <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
+              <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
+              <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
+              <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
+            </div>
+            <a href="/resdashboard"> User Dashboard </a>
           </div>
-          <nav className="space-y-4">
-            <a
-              href="/dashboard"
-              className="block p-3 rounded-md font-semibold transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-xl
-                bg-[#414141] text-white shadow-[5px_0_10px_-5px_rgba(0,0,0,0.4)]"
-            >
-              Dashboard
-            </a>
-            <a
-              href="/dashboard/profile"
-              className="block p-3 rounded-md text-gray-400 font-medium transition-colors duration-200 hover:bg-gray-800 hover:text-white"
-            >
-              Profile
-            </a>
-            <a
-              href="/dashboard/settings"
-              className="block p-3 rounded-md text-gray-400 font-medium transition-colors duration-200 hover:bg-gray-800 hover:text-white"
-            >
-              Settings
-            </a>
-          </nav>
-        </div>
-        <div className="mt-auto pt-6 border-t border-gray-700">
-          <a href="#" className="flex items-center space-x-3 p-3 text-red-400 font-medium hover:text-red-500 transition-colors duration-200">
-              Logout
-          </a>
-        </div>
+          <div className="px-4 py-3 bg-gray-500 rounded text-white font-medium relative group">
+            <a href="/complaints"> Complaints </a>
+          </div>
+          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
+            <a href="/notices">Notices </a>
+          </div>
+          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
+            <a href="/bookings">Bookings</a>
+          </div>
+          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
+            <a href="/finance"> Budget</a>
+          </div>
+          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
+            <a href="/visitors">Visitors</a>
+          </div>
+          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
+            <a href="/settings">Settings</a>
+          </div>
+          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group mt-8">
+            <a href="/profile">Profile</a>
+          </div>
+        </nav>
       </aside>
 
       {/* Main Content Area */}
       <main className="flex-1 p-12">
         <h1 className="text-xl font-normal mb-2 text-white flex items-center space-x-2">
-          <span className="text-gray-400">Dashboard</span>
+          <span className="text-gray-400">User Dashboard</span>
           <img src="/tri.svg" alt="separator" className="h-4 w-4" />
-          <span>Complaint</span>
+          <span>Complaints</span>
         </h1>
         <h2 className="text-3xl font-bold text-[#358289] mb-12">Write Complaint</h2>
         
