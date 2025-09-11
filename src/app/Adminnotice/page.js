@@ -14,16 +14,16 @@ export default function NoticePage() {
               <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
               <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
             </div>
-            <a href="/dashboard">Admin Dashboard</a>
+            <a href="/Admindashboard">Admin Dashboard</a>
           </div>
-          <a href="/complaint" className="block px-4 py-3 hover:text-teal-400">
+          <a href="/Admincomplaint" className="block px-4 py-3 hover:text-teal-400">
             Complaints
           </a>
-          <a href="/notice" className="block px-4 py-3 hover:text-teal-400">
+          <a href="/Adminnotice" className="block px-4 py-3 hover:text-teal-400">
             Notices
           </a>
           <div className="px-4 py-3 hover:text-teal-400">Bookings</div>
-          <a href="/finance" className="block px-4 py-3 hover:text-teal-400">
+          <a href="/Adminfinance" className="block px-4 py-3 hover:text-teal-400">
             Budget
           </a>
           <div className="px-4 py-3 hover:text-teal-400">Visitors</div>
