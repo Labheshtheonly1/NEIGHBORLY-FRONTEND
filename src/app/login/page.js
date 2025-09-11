@@ -67,7 +67,7 @@ export default function LoginPage() {
             <h2 className="text-4xl font-bold">Login</h2>
             <p className="mt-2 text-lg text-gray-400">
               New Here?{' '}
-              <Link href="/register" className="text-[#54D1DC] hover:underline">
+              <Link href="/" className="text-[#54D1DC] hover:underline">
                 Register
               </Link>
             </p>

@@ -29,55 +29,137 @@ body {
 /* src/app/globals.css */
 
 /* Keyframes for the main image floating effect */
+/* Add this to your globals.css file */
+
+/* Floating animation for the house */
 @keyframes float {
-  0% {
-    transform: translateY(0px) scale(1);
+  0%, 100% {
+    transform: translateY(0px);
   }
   50% {
-    transform: translateY(-15px) scale(1.02);
-  }
-  100% {
-    transform: translateY(0px) scale(1);
+    transform: translateY(-20px);
   }
 }
 
-/* Keyframes for the glowing particles */
-@keyframes particle-float {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
+/* Glowing particle animation */
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
   }
-  100% {
-    transform: translateY(-100px) scale(0.5); /* Floats up and shrinks */
-    opacity: 0; /* Fades out */
+  50% {
+    opacity: 0.8;
+    transform: scale(1.2);
   }
 }
 
-/* Base class for the floating animation */
+/* Apply animations */
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
 
-/* Class for the glowing particles */
 .glowing-particle {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: #54D1DC;
-  box-shadow: 0 0 10px #54D1DC; /* Subtle glow */
-  border-radius: 2px;
-  animation: particle-float 2s ease-out infinite;
+  width: 8px;
+  height: 8px;
+  background: #54D1DC;
+  border-radius: 50%;
+  box-shadow: 
+    0 0 10px #54D1DC,
+    0 0 20px #54D1DC,
+    0 0 30px #54D1DC;
+  animation: glow-pulse 2s ease-in-out infinite;
 }
-@keyframes float {
-  0% {
-    transform: translateY(0px);
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #54D1DC, #358289);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #4bc5d1, #2a6b72);
+}
+
+/* Modal backdrop blur effect */
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
+
+/* Focus styles for accessibility */
+input:focus,
+button:focus {
+  outline: 2px solid #54D1DC;
+  outline-offset: 2px;
+}
+
+/* Responsive text sizing */
+@media (max-width: 768px) {
+  .glowing-particle {
+    width: 6px;
+    height: 6px;
   }
-  50% {
-    transform: translateY(-30px);
+}
+
+/* Button hover effects */
+button {
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0px);
+}
+
+/* Modal animations */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
   }
-  100% {
-    transform: translateY(0px);
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
+}
+
+.fixed.inset-0 > .relative {
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+/* Gradient text effect (optional enhancement) */
+.gradient-text {
+  background: linear-gradient(135deg, #54D1DC, #358289);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Loading spinner for form submissions (optional) */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
 }
 
 @keyframes firefly-float {
@@ -109,3 +191,87 @@ body {
   filter: blur(2px);
   animation: firefly-float 2s linear infinite;
 }
+@keyframes shine {
+  0% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: -100%;
+  }
+}
+
+.animate-shine {
+  animation: shine 5s linear infinite;
+}
+ .faq-section {
+            margin: 150px 0;
+            text-align: center;
+        }
+
+        .faq-title {
+            font-size: 45px;
+            font-weight: 700;
+            margin-bottom: 80px;
+            background: linear-gradient(45deg, #ffffff, #64D5C6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .faq-flip-card {
+            background: transparent;
+            width: 100%;
+            height: 250px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .faq-flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .faq-flip-card.flipped .faq-flip-inner {
+            transform: rotateY(180deg);
+        }
+
+        .faq-front, .faq-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-front {
+            background: #64D5C6;
+            color: black;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .faq-back {
+            background: linear-gradient(135deg, #47B2B4, #64D5C6);
+            color: white;
+            transform: rotateY(180deg);
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
