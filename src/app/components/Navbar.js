@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,6 +32,9 @@ export default function Navbar() {
         >
           <div className="max-w-7xl mx-auto px-4">
             <div className="flex items-center justify-center">
+              <div className="hidden md:block px-1 py-3 rounded-full shadow-lg ">
+                <Image src="/logo.png" width={200} height={500} alt="log" />
+              </div>
               <div className="flex items-center gap-4">
                 {/* Desktop Navigation */}
                 <nav className="hidden md:flex items-center justify-between px-9 lg:px-28 py-3 bg-[#3e4040cc] backdrop-blur-md rounded-full shadow-lg border border-white/10">

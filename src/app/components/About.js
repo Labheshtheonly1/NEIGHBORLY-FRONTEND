@@ -68,9 +68,9 @@ export default function About() {
   return (
     <section className="bg-gray-950 text-white relative">
       <div className="sticky top-0 bg-gray-950 text-white pt-20 pb-16 z-30">
-        <h2 className="text-6xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-[#54D1DC] to-white">
+        <h3 className="text-6xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-[#54D1DC] to-white">
           Why Choose Us?
-        </h2>
+        </h3>
       </div>
       <div className="relative z-10">
         <AnimatedItem
