@@ -275,3 +275,8 @@ button:active {
             font-weight: 500;
             line-height: 1.5;
         }
+/* src/app/components/WhyChooseUs.css */
+
+.floating {
+  animation: float 2s ease-in-out infinite;
+}

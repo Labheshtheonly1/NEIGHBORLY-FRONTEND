@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import FeaturesPage from "./components/features";
 import Faq from "./components/faq";
 import Footer from "./components/Footer";
+import WhyChooseUs from "./components/WhyChooseUs";
 
 export default function Home() {
   return (
