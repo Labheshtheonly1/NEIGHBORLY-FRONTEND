@@ -101,7 +101,7 @@ export default function LandingPage() {
         <div className="fixed inset-0 flex items-center justify-center z-50 px-4">
           {/* Overlay */}
           <div
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/70 backdrop-blur-lg"
             onClick={() => {
               setShowModal(false);
               setStep("roles");
@@ -109,7 +109,7 @@ export default function LandingPage() {
           ></div>
 
           {/* Modal Content */}
-          <div className="relative z-10 w-full max-w-2xl rounded-2xl bg-gradient-to-br from-gray-900 to-black shadow-2xl border border-white/20 p-6 md:p-10 max-h-[90vh] overflow-y-auto">
+          <div className="relative z-10 w-full max-w-2xl rounded-2xl bg-[url('/register.png')] shadow-2xl border border-white/90 p-6 md:p-10 max-h-[90vh] overflow-y-auto">
             {/* Role Selection */}
             {step === "roles" && (
               <>
@@ -280,22 +280,14 @@ function FormStep({ role, title, fields, onBack, onNext }) {
 
   return (
     <div>
-      <h2 className="text-xl md:text-2xl font-bold text-white text-center mb-6">
-        {role} Registration
-      </h2>
+      <h2 className="text-xl md:text-2xl font-bold text-white text-center mb-6">{role} Registration</h2>
       <p className="text-lg mb-6 text-gray-300">{title}</p>
 
       <div className="space-y-4">
         {fields.map((field, i) => (
           <input
             key={i}
-            type={
-              field.toLowerCase().includes("email")
-                ? "email"
-                : field.toLowerCase().includes("phone")
-                ? "tel"
-                : "text"
-            }
+            type={field.toLowerCase().includes('email') ? 'email' : field.toLowerCase().includes('phone') ? 'tel' : 'text'}
             placeholder={field}
             value={inputs[i]}
             onChange={(e) => handleChange(i, e.target.value)}
@@ -354,9 +346,7 @@ function FinalStep({ role, onBack, onSubmit }) {
 
   return (
     <div>
-      <h2 className="text-xl md:text-2xl font-bold text-white text-center mb-6">
-        {role} Registration
-      </h2>
+      <h2 className="text-xl md:text-2xl font-bold text-white text-center mb-6">{role} Registration</h2>
       <p className="text-lg mb-6 text-gray-300">Step 3: Account Setup</p>
 
       <div className="space-y-4">
@@ -405,18 +395,8 @@ function FinalStep({ role, onBack, onSubmit }) {
           }}
           className="w-5 h-5 mt-1 rounded border-white/30 bg-black/60 text-[#54D1DC] focus:ring-[#54D1DC]/20"
         />
-        <label
-          htmlFor="terms"
-          className="text-sm text-gray-300 leading-relaxed"
-        >
-          I agree to all the{" "}
-          <span className="text-[#54D1DC] underline cursor-pointer hover:text-[#4bc5d1]">
-            Terms and Conditions
-          </span>{" "}
-          and{" "}
-          <span className="text-[#54D1DC] underline cursor-pointer hover:text-[#4bc5d1]">
-            Privacy Policy
-          </span>
+        <label htmlFor="terms" className="text-sm text-gray-300 leading-relaxed">
+          I agree to all the <span className="text-[#54D1DC] underline cursor-pointer hover:text-[#4bc5d1]">Terms and Conditions</span> and <span className="text-[#54D1DC] underline cursor-pointer hover:text-[#4bc5d1]">Privacy Policy</span>
         </label>
       </div>
 

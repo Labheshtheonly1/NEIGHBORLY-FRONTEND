@@ -9,8 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "gl-matrix": "^3.4.4",
     "framer-motion": "^12.23.12",
+    "gl-matrix": "^3.4.4",
     "lucide-react": "^0.543.0",
     "next": "15.5.2",
     "react": "19.1.0",

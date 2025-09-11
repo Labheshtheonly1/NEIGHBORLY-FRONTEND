@@ -44,7 +44,7 @@ export default function Faq() {
 
   return (
     <section className="faq-section select-none" id="faq">
-      <h2 className="faq-title text-white">Frequently Asked Questions</h2>
+      <h2 className="faq-title bg-color-[#358289]">Frequently Asked Questions</h2>
 
       <div className="faq-grid">
         {faqData.map((item, index) => (
