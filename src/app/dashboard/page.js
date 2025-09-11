@@ -70,7 +70,7 @@ export default function DashboardPage() {
               title="Complaint Tracking"
               items={["Track Complaints", "Resolve Complaints"]}
               gradient="from-gray-800 to-gray-900"
-              href="/complaints"
+              href="/dashboard/complaint"
             />
           </div>
 
