@@ -1,6 +1,7 @@
 import Image from "next/image";
 import LandingPage from "./components/LandingPage";
 import Navbar from "./components/Navbar";
+import WhyChooseUs from "./components/WhyChooseUs";
 
 export default function Home() {
   return (

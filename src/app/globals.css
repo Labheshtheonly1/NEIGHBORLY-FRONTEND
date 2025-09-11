@@ -109,3 +109,8 @@ body {
   filter: blur(2px);
   animation: firefly-float 2s linear infinite;
 }
+/* src/app/components/WhyChooseUs.css */
+
+.floating {
+  animation: float 2s ease-in-out infinite;
+}
