@@ -98,7 +98,7 @@ const ResBudgetPage = () => {
             <Link href="/resdashboard">User Dashboard</Link>
           </div>
           <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
-            <Link href="/complaints">Complaints</Link>
+            <Link href="/Rescomplaints">Complaints</Link>
           </div>
           <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
             <Link href="/notices">Notices</Link>
