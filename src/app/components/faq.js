@@ -11,34 +11,34 @@ export default function Faq() {
 
   const faqData = [
     {
-      question: "How do I log in or register?",
+      question: "What is this platform about?",
       answer:
-        "Our AI analyzes your photos, preferences, and style goals to create personalized outfit recommendations that match your unique taste and lifestyle.",
+        "It’s a web-based complaint tracking system where residents can raise issues, staff can manage them, and owners can monitor everything in one dashboard.",
     },
     {
-      question: "How do I raise or track a complaint?",
+      question: "How is this different from WhatsApp groups or forms?",
       answer:
-        "Yes! We use advanced encryption and never share your personal photos or data with third parties. Your privacy is our top priority.",
+        "Unlike scattered chats or forms, our platform keeps every complaint organized with status updates, staff assignments, and transparent tracking.",
     },
     {
-      question: "Can I book society facilities online?",
+      question: "Do residents need any technical knowledge to use it?",
       answer:
-        "Absolutely! Simply photograph your items and our AI will categorize them and include them in your personalized styling recommendations.",
+        "Not at all. The interface is simple—residents just log in, file a complaint, and track its progress.",
     },
     {
-      question: "Can I make payments online??",
+      question: "What happens if a complaint is unresolved for a long time?",
       answer:
-        "Our AI learns from your feedback and becomes more accurate over time, with a 95% user satisfaction rate for outfit recommendations.",
+        "The system allows owners to track pending complaints and escalate them if they remain unresolved, ensuring accountability and timely action.",
     },
     {
-      question: "Who do I contact for support?",
+      question: "Can staff also post notices, or only owners?",
       answer:
-        "From casual daily wear to formal events, parties, work meetings, and special occasions - we've got every style scenario covered.",
+        "Only owners/admins can post official notices to maintain authenticity and prevent misuse. Staff and residents can only view them.",
     },
     {
       question: "Is my data safe on this platform?",
       answer:
-        "Yes! StyleMe is available on both iOS and Android with full functionality and seamless cloud sync across all your devices.",
+        "Yes, your data is secure and only accessible based on your role (resident, staff, or owner).",
     },
   ];
 
@@ -53,7 +53,8 @@ export default function Faq() {
             className={`faq-flip-card ${
               flippedIndex === index ? "flipped" : ""
             }`}
-            onClick={() => toggleFlip(index)}
+            onMouseEnter={() => toggleFlip(index)}
+            onMouseLeave={() => toggleFlip(index)}
           >
             <div className="faq-flip-inner">
               <div className="faq-front">{item.question}</div>
