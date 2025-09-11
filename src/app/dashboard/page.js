@@ -8,6 +8,10 @@ export default function DashboardPage() {
     <div className="flex min-h-screen bg-black text-white">
       {/* Sidebar */}
       <aside className="w-64 bg-black p-6">
+        <div>
+          <Image src="logo.png" width={510} height={150} alt="logo" />
+        </div>
+
         <nav className="space-y-2">
           <div className="flex items-center gap-3 px-4 py-3 bg-gray-500 rounded text-white font-medium">
             <div className="grid grid-cols-2 gap-1 w-4 h-4">
@@ -91,8 +95,8 @@ export default function DashboardPage() {
             </div>
             <div className="absolute bottom-6 right-6">
               <Image
-                src="/notice.svg"
-                width={100}
+                src="/notice.png"
+                width={80}
                 height={100}
                 alt="notice"
                 className="animate-float"

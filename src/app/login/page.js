@@ -101,8 +101,8 @@ export default function LoginPage() {
             <div className="text-center">
               <h2 className="text-4xl font-bold">Login</h2>
               <p className="mt-2 text-lg text-gray-400">
-                New Here?{' '}
-                <Link href="/#about" className="text-[#54D1DC] hover:underline">
+                New Here?
+                <Link href="/" className="text-[#54D1DC] hover:underline">
                   Register
                 </Link>
               </p>
@@ -119,7 +119,7 @@ export default function LoginPage() {
                   required
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  className="mt-1 block w-full rounded-md border-2 border-white bg-black text-white shadow-sm focus:border-[#54D1DC] focus:ring focus:ring-[#54D1DC] focus:ring-opacity-50 focus:outline-none focus:ring-0 px-4 py-4 transition-transform duration-200 ease-in-out hover:-translate-y-1 focus:-translate-y-1"
+                  className="mt-1 block w-full rounded-md border-2 border-white bg-black text-white shadow-sm focus:outline-none focus:ring-0 px-4 py-4 transition-transform duration-200 ease-in-out hover:-translate-y-1 focus:-translate-y-1"
                   placeholder="Email"
                 />
               </div>
@@ -133,13 +133,13 @@ export default function LoginPage() {
                   required
                   value={password}
                   onChange={e => setPassword(e.target.value)}
-                  className="mt-1 block w-full rounded-md border-2 border-white bg-black text-white shadow-sm focus:border-[#54D1DC] focus:ring focus:ring-[#54D1DC] focus:ring-opacity-50 focus:outline-none focus:ring-0 px-4 py-4 pr-12 transition-transform duration-200 ease-in-out hover:-translate-y-1 focus:-translate-y-1"
+                  className="mt-1 block w-full rounded-md border-2 border-white bg-black text-white shadow-sm   px-4 py-4 pr-12 transition-transform duration-200 ease-in-out hover:-translate-y-1 focus:-translate-y-1"
                   placeholder="Password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 text-sm font-medium focus:outline-none focus:ring-0"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 text-sm font-medium "
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? "Hide" : "Show"}
@@ -150,7 +150,7 @@ export default function LoginPage() {
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
-                  className="h-4 w-4 text-[#54D1DC] focus:ring-[#54D1DC] border-gray-700 rounded bg-gray-800 focus:outline-none focus:ring-0"
+                  className="h-4 w-4 border-gray-700 rounded bg-gray-800 "
                 />
                 <label htmlFor="remember-me" className="ml-4 block text-sm text-gray-400">
                   Remember me
@@ -164,7 +164,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-5 px-4 border border-transparent rounded-md shadow-sm text-lg font-bold text-gray-950 bg-[#358289] hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#358289]"
+                className="w-full py-5 px-4 border border-transparent rounded-md shadow-sm text-lg font-bold text-gray-950 bg-[#358289] hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 ]"
               >
                 <span className="text-2xl">{loading ? "Signing in..." : "Sign in"}</span>
               </button>

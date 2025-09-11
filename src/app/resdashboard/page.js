@@ -90,7 +90,7 @@ export default function ResDashboardPage() {
             </div>
             <div className="absolute bottom-6 right-6">
               <Image
-                src="/notice.svg"
+                src="/notice.png"
                 width={100}
                 height={100}
                 alt="notice"
