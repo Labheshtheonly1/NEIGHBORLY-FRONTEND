@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Poppins } from 'next/font/google';
 import { useState, useEffect } from 'react';
+import api from '../api/api'
 
 const poppins = Poppins({
   weight: ['400', '700'],
@@ -26,9 +27,28 @@ function FireflyParticle() {
 }
 
 export default function LoginPage() {
-  const handleSubmit = (event) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Login form submitted!');
+    setError("");
+    setLoading(true);
+    try {
+      const response = await api.post("/api/auth/login", { email, password });
+      if (response.status === 200) {
+        alert("✅ Login successful!");
+        // TODO: Redirect or update UI as needed
+      }
+    } catch (err) {
+      setError(
+        `❌ Login failed: ${err.response?.data?.message || err.message}`
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleGoogleSignIn = () => {
@@ -90,6 +110,8 @@ export default function LoginPage() {
                   type="email"
                   autoComplete="email"
                   required
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
                   className="mt-1 block w-full rounded-md border-2 border-white bg-black text-white shadow-sm focus:border-[#54D1DC] focus:ring focus:ring-[#54D1DC] focus:ring-opacity-50 px-4 py-4 transition-transform duration-200 ease-in-out hover:-translate-y-1 focus:-translate-y-1"
                   placeholder="Email"
                 />
@@ -102,6 +124,8 @@ export default function LoginPage() {
                   type="password"
                   autoComplete="current-password"
                   required
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
                   className="mt-1 block w-full rounded-md border-2 border-white bg-black text-white shadow-sm focus:border-[#54D1DC] focus:ring focus:ring-[#54D1DC] focus:ring-opacity-50 px-4 py-4 transition-transform duration-200 ease-in-out hover:-translate-y-1 focus:-translate-y-1"
                   placeholder="Password"
                 />
@@ -117,11 +141,17 @@ export default function LoginPage() {
                   Remember me
                 </label>
               </div>
+              {error && (
+                <div className="p-3 bg-red-900/30 border border-red-500/50 rounded-lg mb-2">
+                  <p className="text-red-300 text-sm">{error}</p>
+                </div>
+              )}
               <button
                 type="submit"
+                disabled={loading}
                 className="w-full py-5 px-4 border border-transparent rounded-md shadow-sm text-lg font-bold text-gray-950 bg-[#358289] hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#358289]"
               >
-                <span className="text-2xl">Sign in</span>
+                <span className="text-2xl">{loading ? "Signing in..." : "Sign in"}</span>
               </button>
             </form>
 
