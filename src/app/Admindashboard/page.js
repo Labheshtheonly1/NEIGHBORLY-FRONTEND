@@ -50,7 +50,7 @@ export default function DashboardPage() {
               Bookings
             </div>
             <Link
-              href="/Adminfinance"
+              href="/resbudget"
               className="block px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200"
             >
               Budget
@@ -155,8 +155,8 @@ export default function DashboardPage() {
           </Link>
 
           {/* Empty Cards */}
-          <div className="col-span-2 bg-white rounded-lg"></div>
-          <div className="col-span-2 bg-white rounded-lg"></div>
+          <div className="col-span-2 bg-white/10 rounded-lg"></div>
+          <div className="col-span-2 bg-white/10 rounded-lg"></div>
         </div>
       </main>
     </div>

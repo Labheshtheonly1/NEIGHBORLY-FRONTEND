@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 // Mock data for the complaints list
 const initialComplaints = [

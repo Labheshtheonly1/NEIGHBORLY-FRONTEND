@@ -80,7 +80,7 @@ export default function NoticePage() {
           </a>
           <div className="px-4 py-3 hover:text-teal-400">Bookings</div>
           <a
-            href="/Adminfinance"
+            href="/resbudget"
             className="block px-4 py-3 hover:text-teal-400"
           >
             Budget

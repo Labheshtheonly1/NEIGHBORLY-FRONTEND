@@ -36,7 +36,7 @@ export default function ComplaintPage() {
             Bookings
           </div>
           <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
-            <a href="/Adminfinance"> Budget</a>
+            <a href="/resbudget"> Budget</a>
           </div>
           <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
             Visitors
