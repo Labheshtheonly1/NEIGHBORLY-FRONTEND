@@ -49,7 +49,7 @@ const AnimatedItem = ({ id, text, imgSrc, isReversed }) => {
         </motion.div>
         <div className="flex-1 p-4 text-center z-20">
           <motion.h3
-            className={`text-6xl font-extrabold drop-shadow-lg text-[#54D1DC]`}
+            className={`text-5xl font-extrabold drop-shadow-lg text-[#54D1DC]`}
             variants={textVariants}
             initial="hidden"
             whileInView="visible"

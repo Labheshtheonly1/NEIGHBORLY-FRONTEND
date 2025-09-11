@@ -29,6 +29,7 @@ function FireflyParticle() {
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -59,9 +60,15 @@ export default function LoginPage() {
 
   return (
     <div className={`flex min-h-screen bg-gray-950 text-white relative ${poppins.className}`}>
-      {/* "Neighborly" Title at Top Right */}
+      {/* Neighborly Logo at Top Right */}
       <div className="absolute top-8 right-8 z-10">
-        <h1 className="text-4xl font-bold text-white">Neighborly</h1>
+        <Image
+          src="/logo.svg"
+          alt="Neighborly Logo"
+          width={150}
+          height={40}
+          className="h-auto"
+        />
       </div>
 
       {/* Left section with the illustration */}
@@ -103,7 +110,7 @@ export default function LoginPage() {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="email" className="block text-xl font-medium text-white"></label>
+                <label htmlFor="email" className="block text-xl font-medium text-white sr-only">Email</label>
                 <input
                   id="email"
                   name="email"
@@ -112,30 +119,38 @@ export default function LoginPage() {
                   required
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  className="mt-1 block w-full rounded-md border-2 border-white bg-black text-white shadow-sm focus:border-[#54D1DC] focus:ring focus:ring-[#54D1DC] focus:ring-opacity-50 px-4 py-4 transition-transform duration-200 ease-in-out hover:-translate-y-1 focus:-translate-y-1"
+                  className="mt-1 block w-full rounded-md border-2 border-white bg-black text-white shadow-sm focus:border-[#54D1DC] focus:ring focus:ring-[#54D1DC] focus:ring-opacity-50 focus:outline-none focus:ring-0 px-4 py-4 transition-transform duration-200 ease-in-out hover:-translate-y-1 focus:-translate-y-1"
                   placeholder="Email"
                 />
               </div>
-              <div>
-                <label htmlFor="password" className="block text-xl font-medium text-white"></label>
+              <div className="relative">
+                <label htmlFor="password" className="block text-xl font-medium text-white sr-only">Password</label>
                 <input
                   id="password"
                   name="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   autoComplete="current-password"
                   required
                   value={password}
                   onChange={e => setPassword(e.target.value)}
-                  className="mt-1 block w-full rounded-md border-2 border-white bg-black text-white shadow-sm focus:border-[#54D1DC] focus:ring focus:ring-[#54D1DC] focus:ring-opacity-50 px-4 py-4 transition-transform duration-200 ease-in-out hover:-translate-y-1 focus:-translate-y-1"
+                  className="mt-1 block w-full rounded-md border-2 border-white bg-black text-white shadow-sm focus:border-[#54D1DC] focus:ring focus:ring-[#54D1DC] focus:ring-opacity-50 focus:outline-none focus:ring-0 px-4 py-4 pr-12 transition-transform duration-200 ease-in-out hover:-translate-y-1 focus:-translate-y-1"
                   placeholder="Password"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 text-sm font-medium focus:outline-none focus:ring-0"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? "Hide" : "Show"}
+                </button>
               </div>
               <div className="flex items-center">
                 <input
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
-                  className="h-4 w-4 text-[#54D1DC] focus:ring-[#54D1DC] border-gray-700 rounded bg-gray-800"
+                  className="h-4 w-4 text-[#54D1DC] focus:ring-[#54D1DC] border-gray-700 rounded bg-gray-800 focus:outline-none focus:ring-0"
                 />
                 <label htmlFor="remember-me" className="ml-4 block text-sm text-gray-400">
                   Remember me
