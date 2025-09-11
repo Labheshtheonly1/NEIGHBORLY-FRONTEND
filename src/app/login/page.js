@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { Poppins } from 'next/font/google';
-import { useState, useEffect } from 'react';
-import api from '../api/api'
-import { useRouter } from 'next/navigation';
+import Link from "next/link";
+import Image from "next/image";
+import { Poppins } from "next/font/google";
+import { useState, useEffect } from "react";
+import api from "../api/api";
+import { useRouter } from "next/navigation";
 
 const poppins = Poppins({
-  weight: ['400', '700'],
-  subsets: ['latin'],
+  weight: ["400", "700"],
+  subsets: ["latin"],
 });
 
 function FireflyParticle() {
@@ -44,7 +44,10 @@ export default function LoginPage() {
       if (response.status === 200) {
         console.log("Login successful:", response.data.user);
         // Try to get role from response
-        const role = response.data?.role || response.data?.userType || response.data?.user?.role;
+        const role =
+          response.data?.role ||
+          response.data?.userType ||
+          response.data?.user?.role;
         alert(`✅ Login successful!\nRole: ${role}`);
         if (role === "owner") {
           router.push("/Admindashboard");
@@ -63,13 +66,15 @@ export default function LoginPage() {
   };
 
   const handleGoogleSignIn = () => {
-    console.log('Google Sign-in clicked');
+    console.log("Google Sign-in clicked");
   };
 
   const particles = Array.from({ length: 90 });
 
   return (
-    <div className={`flex min-h-screen bg-gray-950 text-white relative ${poppins.className}`}>
+    <div
+      className={`flex min-h-screen bg-gray-950 text-white relative ${poppins.className}`}
+    >
       {/* Neighborly Logo at Top Right */}
       <div className="absolute top-8 right-8 z-10">
         <Image
@@ -111,8 +116,8 @@ export default function LoginPage() {
             <div className="text-center">
               <h2 className="text-4xl font-bold">Login</h2>
               <p className="mt-2 text-lg text-gray-400">
-                New Here?
-                <Link href="/" className="text-[#54D1DC] hover:underline">
+                New Here?{" "}
+                <Link href="/#about" className="text-[#54D1DC] hover:underline">
                   Register
                 </Link>
               </p>
@@ -120,7 +125,12 @@ export default function LoginPage() {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="email" className="block text-xl font-medium text-white sr-only">Email</label>
+                <label
+                  htmlFor="email"
+                  className="block text-xl font-medium text-white sr-only"
+                >
+                  Email
+                </label>
                 <input
                   id="email"
                   name="email"
@@ -128,13 +138,18 @@ export default function LoginPage() {
                   autoComplete="email"
                   required
                   value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  className="mt-1 block w-full rounded-md border-2 border-white bg-black text-white shadow-sm focus:outline-none focus:ring-0 px-4 py-4 transition-transform duration-200 ease-in-out hover:-translate-y-1 focus:-translate-y-1"
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="mt-1 block w-full rounded-md border-2 border-white bg-black text-white shadow-sm focus:border-[#54D1DC] focus:ring focus:ring-[#54D1DC] focus:ring-opacity-50 focus:outline-none focus:ring-0 px-4 py-4 transition-transform duration-200 ease-in-out hover:-translate-y-1 focus:-translate-y-1"
                   placeholder="Email"
                 />
               </div>
               <div className="relative">
-                <label htmlFor="password" className="block text-xl font-medium text-white sr-only">Password</label>
+                <label
+                  htmlFor="password"
+                  className="block text-xl font-medium text-white sr-only"
+                >
+                  Password
+                </label>
                 <input
                   id="password"
                   name="password"
@@ -142,14 +157,14 @@ export default function LoginPage() {
                   autoComplete="current-password"
                   required
                   value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  className="mt-1 block w-full rounded-md border-2 border-white bg-black text-white shadow-sm   px-4 py-4 pr-12 transition-transform duration-200 ease-in-out hover:-translate-y-1 focus:-translate-y-1"
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="mt-1 block w-full rounded-md border-2 border-white bg-black text-white shadow-sm focus:border-[#54D1DC] focus:ring focus:ring-[#54D1DC] focus:ring-opacity-50 focus:outline-none focus:ring-0 px-4 py-4 pr-12 transition-transform duration-200 ease-in-out hover:-translate-y-1 focus:-translate-y-1"
                   placeholder="Password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 text-sm font-medium "
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 text-sm font-medium focus:outline-none focus:ring-0"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? "Hide" : "Show"}
@@ -160,9 +175,12 @@ export default function LoginPage() {
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
-                  className="h-4 w-4 border-gray-700 rounded bg-gray-800 "
+                  className="h-4 w-4 text-[#54D1DC] focus:ring-[#54D1DC] border-gray-700 rounded bg-gray-800 focus:outline-none focus:ring-0"
                 />
-                <label htmlFor="remember-me" className="ml-4 block text-sm text-gray-400">
+                <label
+                  htmlFor="remember-me"
+                  className="ml-4 block text-sm text-gray-400"
+                >
                   Remember me
                 </label>
               </div>
@@ -174,15 +192,19 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-5 px-4 border border-transparent rounded-md shadow-sm text-lg font-bold text-gray-950 bg-[#358289] hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 ]"
+                className="w-full py-5 px-4 border border-transparent rounded-md shadow-sm text-lg font-bold text-gray-950 bg-[#358289] hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#358289]"
               >
-                <span className="text-2xl">{loading ? "Signing in..." : "Sign in"}</span>
+                <span className="text-2xl">
+                  {loading ? "Signing in..." : "Sign in"}
+                </span>
               </button>
             </form>
 
             <div className="flex items-center">
               <div className="flex-grow border-t border-gray-700"></div>
-              <span className="flex-shrink mx-4 text-gray-400">or Sign in with</span>
+              <span className="flex-shrink mx-4 text-gray-400">
+                or Sign in with
+              </span>
               <div className="flex-grow border-t border-gray-700"></div>
             </div>
 

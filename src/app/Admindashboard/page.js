@@ -1,5 +1,5 @@
 "use client";
-import { Bell } from "lucide-react";
+import { Bell, LogOut } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,43 +7,71 @@ export default function DashboardPage() {
   return (
     <div className="flex min-h-screen bg-black text-white">
       {/* Sidebar */}
-      <aside className="w-64 bg-black p-6">
+      <aside className="w-64 bg-black p-6 flex flex-col justify-between">
+        {/* Top Section */}
         <div>
-          <Image src="logo.png" width={510} height={150} alt="logo" />
+          {/* Logo */}
+          <div className="flex justify-center mb-6">
+            <Image
+              src="/logo.png"
+              width={520}
+              height={520}
+              alt="logo"
+              className="rounded-full"
+            />
+          </div>
+
+          {/* Admin Dashboard Link */}
+          <nav className="space-y-2">
+            <div className="flex items-center gap-3 px-4 py-3 bg-gray-500 rounded text-white font-medium">
+              <div className="grid grid-cols-2 gap-1 w-4 h-4">
+                <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
+                <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
+                <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
+                <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
+              </div>
+              <a href="/Admindashboard">Admin Dashboard</a>
+            </div>
+
+            {/* Sidebar Links */}
+            <Link
+              href="/Admincomplaint"
+              className="block px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200"
+            >
+              Complaints
+            </Link>
+            <Link
+              href="/Adminnotice"
+              className="block px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200"
+            >
+              Notices
+            </Link>
+            <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200">
+              Bookings
+            </div>
+            <Link
+              href="/Adminfinance"
+              className="block px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200"
+            >
+              Budget
+            </Link>
+            <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200">
+              Visitors
+            </div>
+            <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200">
+              Settings
+            </div>
+            <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 mt-8">
+              Profile
+            </div>
+          </nav>
         </div>
 
-        <nav className="space-y-2">
-          <div className="flex items-center gap-3 px-4 py-3 bg-gray-500 rounded text-white font-medium">
-            <div className="grid grid-cols-2 gap-1 w-4 h-4">
-              <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
-              <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
-              <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
-              <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
-            </div>
-            <a href="/Admindashboard"> Admin Dashboard </a>
-          </div>
-          <div className="px-4 py-3  text-white hover:text-teal-400 transition-colors duration-200 relative group">
-            <a href="/Admincomplaint"> Complaints </a>
-          </div>
-          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
-            <a href="/Adminnotice">Notices </a>
-          </div>
-          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
-            Bookings
-          </div>
-          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
-            <a href="/Adminfinance"> Budget</a>
-          </div>
-          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
-            Visitors
-          </div>
-          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
-            Settings
-          </div>
-          <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group mt-8">
-            Profile
-          </div>
-        </nav>
+        {/* Bottom Section - Logout */}
+        <button className="flex items-center gap-2 px-4 py-3 text-red-400 hover:text-red-500 transition-colors duration-200">
+          <LogOut className="w-5 h-5" />
+          Logout
+        </button>
       </aside>
 
       {/* Main content */}
@@ -59,7 +87,7 @@ export default function DashboardPage() {
 
         {/* Grid Layout */}
         <div className="grid grid-cols-5 grid-rows-2 gap-6 h-[500px]">
-          {/* Complaint Tracking - Rectangle spanning 2 cols */}
+          {/* Complaint Tracking */}
           <Link
             href="/Admincomplaint"
             className="col-span-2 bg-white/10 rounded-lg p-6 relative hover:scale-105 transition"
@@ -82,8 +110,7 @@ export default function DashboardPage() {
             </div>
           </Link>
 
-          {/* Top Right White Rectangle */}
-          {/* Top Right White Rectangle - Notices */}
+          {/* Notices */}
           <Link
             href="/Adminnotice"
             className="col-span-3 bg-white/10 rounded-lg p-6 relative hover:scale-105 transition"
@@ -104,8 +131,7 @@ export default function DashboardPage() {
             </div>
           </Link>
 
-          {/* Row 2 */}
-          {/* Finance and Budget - Square (1 col) */}
+          {/* Finance and Budget */}
           <Link
             href="/Adminfinance"
             className="bg-white/10 rounded-lg p-6 relative hover:scale-105 transition"
@@ -128,10 +154,8 @@ export default function DashboardPage() {
             </div>
           </Link>
 
-          {/* Bottom Middle White Rectangle */}
+          {/* Empty Cards */}
           <div className="col-span-2 bg-white rounded-lg"></div>
-
-          {/* Bottom Right White Rectangle */}
           <div className="col-span-2 bg-white rounded-lg"></div>
         </div>
       </main>

@@ -1,11 +1,21 @@
 "use client";
-import { Bell } from "lucide-react";
+import { Bell, Import } from "lucide-react";
+import Image from "next/image";
 
 export default function ComplaintPage() {
   return (
     <div className="flex min-h-screen bg-black text-white">
       {/* Sidebar */}
       <aside className="w-64 bg-black p-6">
+        <div className="flex justify-center mb-6">
+          <Image
+            src="/logo.png"
+            width={520}
+            height={520}
+            alt="logo"
+            className="rounded-full"
+          />
+        </div>
         <nav className="space-y-2">
           <div className="flex items-center gap-3 px-4 py-3 bg-gray-500 rounded text-white font-medium">
             <div className="grid grid-cols-2 gap-1 w-4 h-4">

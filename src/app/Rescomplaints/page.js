@@ -40,6 +40,15 @@ const ComplaintsPage = () => {
     <div className="flex min-h-screen bg-[#111111] text-white">
       {/* User Sidebar */}
       <aside className="w-64 bg-black p-6">
+        <div className="flex justify-center mb-6">
+          <Image
+            src="/logo.png"
+            width={520}
+            height={520}
+            alt="logo"
+            className="rounded-full"
+          />
+        </div>
         <nav className="space-y-2">
           <div className="flex items-center gap-3 px-4 py-3 text-white font-medium">
             <div className="grid grid-cols-2 gap-1 w-4 h-4">
@@ -81,56 +90,73 @@ const ComplaintsPage = () => {
           <img src="/tri.svg" alt="separator" className="h-4 w-4" />
           <span>Complaints</span>
         </h1>
-        <h2 className="text-3xl font-bold text-[#358289] mb-12">Write Complaint</h2>
-        
+        <h2 className="text-3xl font-bold text-[#358289] mb-12">
+          Write Complaint
+        </h2>
+
         <section className="mb-12 flex justify-center">
-            <div className="w-[50rem] bg-[#1C1C1E] p-8 rounded-2xl border border-[#2c2c2e] transition-all duration-300 transform hover:-translate-y-1">
-                <div className="flex justify-center items-center mb-6">
-                    <div className="flex bg-[#333333] rounded-full overflow-hidden">
-                        <button
-                            onClick={() => setShowFileUpload(false)}
-                            className={`px-6 py-3 font-bold transition-colors duration-300 ${!showFileUpload ? 'bg-[#358289] text-gray-950' : 'text-[#358289]'}`}
-                        >
-                            Create Complaint
-                        </button>
-                        <button
-                            onClick={() => setShowFileUpload(true)}
-                            className={`px-6 py-3 font-bold transition-colors duration-300 ${showFileUpload ? 'bg-[#358289] text-gray-950' : 'text-[#358289]'}`}
-                        >
-                            Add Media/Files
-                        </button>
-                    </div>
-                </div>
-                {showFileUpload ? (
-                  <CloudUploadArea />
-                ) : (
-                    <form id="complaint-form" className="space-y-6">
-                      <input
-                        type="text"
-                        placeholder="Name"
-                        className="w-full p-4 bg-[#2C2C2E] text-white rounded-xl placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#358289] border border-[#444444]"
-                      />
-                      <textarea
-                        placeholder="Description"
-                        rows="6"
-                        className="w-full p-4 bg-[#2C2C2E] text-white rounded-xl placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#358289] resize-none border border-[#444444]"
-                      />
-                    </form>
-                )}
+          <div className="w-[50rem] bg-[#1C1C1E] p-8 rounded-2xl border border-[#2c2c2e] transition-all duration-300 transform hover:-translate-y-1">
+            <div className="flex justify-center items-center mb-6">
+              <div className="flex bg-[#333333] rounded-full overflow-hidden">
+                <button
+                  onClick={() => setShowFileUpload(false)}
+                  className={`px-6 py-3 font-bold transition-colors duration-300 ${
+                    !showFileUpload
+                      ? "bg-[#358289] text-gray-950"
+                      : "text-[#358289]"
+                  }`}
+                >
+                  Create Complaint
+                </button>
+                <button
+                  onClick={() => setShowFileUpload(true)}
+                  className={`px-6 py-3 font-bold transition-colors duration-300 ${
+                    showFileUpload
+                      ? "bg-[#358289] text-gray-950"
+                      : "text-[#358289]"
+                  }`}
+                >
+                  Add Media/Files
+                </button>
+              </div>
             </div>
+            {showFileUpload ? (
+              <CloudUploadArea />
+            ) : (
+              <form id="complaint-form" className="space-y-6">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  className="w-full p-4 bg-[#2C2C2E] text-white rounded-xl placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#358289] border border-[#444444]"
+                />
+                <textarea
+                  placeholder="Description"
+                  rows="6"
+                  className="w-full p-4 bg-[#2C2C2E] text-white rounded-xl placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#358289] resize-none border border-[#444444]"
+                />
+              </form>
+            )}
+          </div>
         </section>
 
         <section>
-          <h3 className="text-2xl font-semibold mb-6 text-[#358289]">My Complaints</h3>
+          <h3 className="text-2xl font-semibold mb-6 text-[#358289]">
+            My Complaints
+          </h3>
           <div className="space-y-4">
             {complaints.map((complaint) => (
-              <div key={complaint.id} className="bg-[#1C1C1E] p-6 rounded-xl shadow-md flex justify-between items-center transition-all duration-300 transform hover:-translate-y-1">
+              <div
+                key={complaint.id}
+                className="bg-[#1C1C1E] p-6 rounded-xl shadow-md flex justify-between items-center transition-all duration-300 transform hover:-translate-y-1"
+              >
                 <div>
-                    <h4 className="text-xl font-semibold text-[#358289]">{complaint.title}</h4>
-                    <p className="mt-2 text-gray-400">{complaint.description}</p>
+                  <h4 className="text-xl font-semibold text-[#358289]">
+                    {complaint.title}
+                  </h4>
+                  <p className="mt-2 text-gray-400">{complaint.description}</p>
                 </div>
                 <span className="text-sm font-semibold text-gray-400">
-                    {complaint.status}
+                  {complaint.status}
                 </span>
               </div>
             ))}
