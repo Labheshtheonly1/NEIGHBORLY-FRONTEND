@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Poppins } from 'next/font/google';
 import { useState, useEffect } from 'react';
 import api from '../api/api'
+import { useRouter } from 'next/navigation';
 
 const poppins = Poppins({
   weight: ['400', '700'],
@@ -31,6 +32,7 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const router = useRouter();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -39,8 +41,16 @@ export default function LoginPage() {
     try {
       const response = await api.post("/api/auth/login", { email, password });
       if (response.status === 200) {
-        alert("✅ Login successful!");
-        // TODO: Redirect or update UI as needed
+        console.log("Login successful:", response.data.user);
+        // Try to get role from response
+        const role = response.data?.role || response.data?.userType || response.data?.user?.role;
+        alert(`✅ Login successful!\nRole: ${role}`);
+        if (role === "owner") {
+          router.push("/Admindashboard");
+        }
+        if (role === "resident") {
+          router.push("/Resdashboard");
+        }
       }
     } catch (err) {
       setError(

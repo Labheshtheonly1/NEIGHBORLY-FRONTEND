@@ -14,19 +14,19 @@ export default function ComplaintPage() {
               <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
               <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
             </div>
-            <a href="/dashboard"> Admin Dashboard </a>
+            <a href="/Admindashboard"> Admin Dashboard </a>
           </div>
           <div className="px-4 py-3  text-white hover:text-teal-400 transition-colors duration-200 relative group">
-            <a href="/complaint"> Complaints </a>
+            <a href="/Admincomplaint"> Complaints </a>
           </div>
           <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
-            <a href="/notice">Notices </a>
+            <a href="/Adminnotice">Notices </a>
           </div>
           <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
             Bookings
           </div>
           <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
-            <a href="/finance"> Budget</a>
+            <a href="/Adminfinance"> Budget</a>
           </div>
           <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
             Visitors

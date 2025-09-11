@@ -16,19 +16,19 @@ export default function DashboardPage() {
               <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
               <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
             </div>
-            <a href="/dashboard"> Admin Dashboard </a>
+            <a href="/Admindashboard"> Admin Dashboard </a>
           </div>
           <div className="px-4 py-3  text-white hover:text-teal-400 transition-colors duration-200 relative group">
-            <a href="/complaint"> Complaints </a>
+            <a href="/Admincomplaint"> Complaints </a>
           </div>
           <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
-            <a href="/notice">Notices </a>
+            <a href="/Adminnotice">Notices </a>
           </div>
           <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
             Bookings
           </div>
           <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
-            <a href="/finance"> Budget</a>
+            <a href="/Adminfinance"> Budget</a>
           </div>
           <div className="px-4 py-3 text-white hover:text-teal-400 transition-colors duration-200 relative group">
             Visitors
@@ -57,7 +57,7 @@ export default function DashboardPage() {
         <div className="grid grid-cols-5 grid-rows-2 gap-6 h-[500px]">
           {/* Complaint Tracking - Rectangle spanning 2 cols */}
           <Link
-            href="/complaint"
+            href="/Admincomplaint"
             className="col-span-2 bg-white/10 rounded-lg p-6 relative hover:scale-105 transition"
           >
             <h3 className="text-teal-400 text-3xl font-bold mb-4">
@@ -81,7 +81,7 @@ export default function DashboardPage() {
           {/* Top Right White Rectangle */}
           {/* Top Right White Rectangle - Notices */}
           <Link
-            href="/notice"
+            href="/Adminnotice"
             className="col-span-3 bg-white/10 rounded-lg p-6 relative hover:scale-105 transition"
           >
             <h3 className="text-teal-400 text-3xl font-bold mb-4">NOTICES</h3>
@@ -103,7 +103,7 @@ export default function DashboardPage() {
           {/* Row 2 */}
           {/* Finance and Budget - Square (1 col) */}
           <Link
-            href="/finance"
+            href="/Adminfinance"
             className="bg-white/10 rounded-lg p-6 relative hover:scale-105 transition"
           >
             <h3 className="text-teal-400 text-lg font-bold mb-3">
