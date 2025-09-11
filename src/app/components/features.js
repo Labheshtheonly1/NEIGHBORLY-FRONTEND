@@ -25,8 +25,8 @@ export default function FeaturesPage() {
 
       {/* Header */}
       <div className="relative z-10 text-center pt-20 pb-12">
-        <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-          Powerful Features
+        <h1 className="text-4xl md:text-6xl font-bold text-[#358289] mb-4">
+          Features
         </h1>
         <p className="text-xl text-gray-300 max-w-2xl mx-auto px-4">
           Experience the future of society management with our comprehensive
@@ -93,14 +93,10 @@ export default function FeaturesPage() {
                   ))}
                 </div>
               )}
-
-              
             </div>
           </div>
         </div>
       )}
-
-    
     </section>
   );
 }

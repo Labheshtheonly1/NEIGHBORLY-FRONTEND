@@ -15,7 +15,7 @@ export default function Navbar() {
 
   const navItems = [
     { label: "HOME", path: "#home" },
-    { label: "ABOUT", path: "#about" },
+    { label: "WHY US?", path: "#about" },
     { label: "FEATURES", path: "#features" },
     { label: "FAQs", path: "#faq" },
   ];
