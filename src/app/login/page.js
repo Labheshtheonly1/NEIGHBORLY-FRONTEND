@@ -39,7 +39,7 @@ export default function LoginPage() {
     setError("");
     setLoading(true);
     try {
-      const response = await api.post("/api/auth/login", { email, password });
+  const response = await api.post("/api/auth/login", { email, password });
       if (response.status === 200) {
         console.log("Login successful:", response.data.user);
         // Try to get role from response

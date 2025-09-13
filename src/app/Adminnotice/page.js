@@ -1,11 +1,108 @@
-"use client";
-import React, { useState } from "react";
+'use client';
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import api from "../api/api"; // shared axios (withCredentials enabled)
+import { useRouter } from "next/navigation";
 
 export default function NoticePage() {
   const [activeView, setActiveView] = useState("default");
-  const [activeTab, setActiveTab] = useState("notices"); 
+  const [activeTab, setActiveTab] = useState("notices");
 
+  // State for fetched notices
+  const [noticesData, setNoticesData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // State for the "Create Notice" form
+  const [noticeTitle, setNoticeTitle] = useState("");
+  const [noticeExpiry, setNoticeExpiry] = useState("");
+  const [noticeDescription, setNoticeDescription] = useState("");
+  const [noticeCategory, setNoticeCategory] = useState("Event"); // Default category
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
+
+  // --- Data Fetching ---
+  const fetchNotices = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await api.get("/api/notice/fetchnotices");
+      // Backend returns { message, data: Array<{ id, title, content, category, created_at }> }
+      const list = Array.isArray(response?.data?.data)
+        ? response.data.data
+        : [];
+      // Sort by created_at desc
+      const sorted = [...list].sort(
+        (a, b) => new Date(b.created_at) - new Date(a.created_at)
+      );
+      setNoticesData(sorted);
+    } catch (err) {
+      const status = err?.response?.status;
+      const msg = err?.response?.data?.message || err.message;
+      setError(`Failed to fetch notices: ${msg}`);
+      if (status === 401) {
+        // Not authenticated: send user to login
+        router.push("/login");
+      }
+      console.error("Fetch notices error:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Fetch notices when the component mounts
+  useEffect(() => {
+    fetchNotices();
+  }, []);
+
+  // --- Helper Functions ---
+  const getCategoryStyle = (category) => {
+    switch (category?.toUpperCase()) {
+      case "EVENT":
+        return "bg-green-600";
+      case "MAINTENANCE":
+        return "bg-yellow-600";
+      case "EMERGENCY ":
+        return "bg-red-600";
+      default:
+        return "bg-gray-500";
+    }
+  };
+
+  // --- Event Handlers ---
+  const handlePublishNotice = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
+
+    const noticePayload = {
+      title: noticeTitle,
+      content: noticeDescription, // backend expects `content`
+      category: noticeCategory,
+    };
+
+    try {
+      await api.post("/notice/createnotice", noticePayload);
+
+      // Reset form and view
+      setNoticeTitle("");
+      setNoticeDescription("");
+      setNoticeExpiry("");
+      setNoticeCategory("Event");
+      setActiveView("default");
+
+      // Refresh the notices list
+      await fetchNotices();
+    } catch (err) {
+      const status = err?.response?.status;
+      const msg = err?.response?.data?.message || err.message;
+      setError(`Failed to publish notice: ${msg}`);
+      if (status === 401) router.push("/login");
+      alert(`Error: ${err.response?.data?.message || err.message}`);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const pollsData = [
     {
@@ -45,17 +142,15 @@ export default function NoticePage() {
     <div className="flex min-h-screen bg-black text-white">
       {/* Sidebar */}
       <aside className="w-64 bg-black p-6">
-        
-          {/* Logo */}
-          <div className="flex justify-center mb-6">
-            <Image
-              src="/logo.png"
-              width={520}
-              height={520}
-              alt="logo"
-              className="rounded-full"
-            />
-          </div>
+        <div className="flex justify-center mb-6">
+          <Image
+            src="/logo.png"
+            width={520}
+            height={520}
+            alt="logo"
+            className="rounded-full"
+          />
+        </div>
         <nav className="space-y-2">
           <div className="flex items-center gap-3 px-4 py-3 bg-gray-500 rounded text-white font-medium">
             <div className="grid grid-cols-2 gap-1 w-4 h-4">
@@ -93,13 +188,11 @@ export default function NoticePage() {
 
       {/* Main Content */}
       <main className="flex-1 p-8 bg-black rounded-lg">
-        {/* Header */}
         <h1 className="text-xl font-bold mb-6">
           <span className="text-white/60">Dashboard</span> › Notices &
           Communication
         </h1>
 
-        {/* Buttons (only when default view) */}
         {activeView === "default" && (
           <div className="flex justify-between items-center mb-8">
             <h1 className="text-2xl text-cyan-400 font-bold">
@@ -122,7 +215,6 @@ export default function NoticePage() {
           </div>
         )}
 
-        {/* Tabs (always visible) - Now functional */}
         <div className="flex gap-4 mb-6">
           <button
             onClick={() => setActiveTab("notices")}
@@ -146,60 +238,48 @@ export default function NoticePage() {
           </button>
         </div>
 
-        {/* Default List View */}
         {activeView === "default" && (
           <div className="grid grid-cols-3 gap-6">
-            {/* Left Column (Cards) */}
             <div className="col-span-2 space-y-4">
-              {/* Notices Tab Content */}
               {activeTab === "notices" && (
                 <>
-                  {/* Notice Card 1 */}
-                  <div className="bg-white/10 rounded-lg p-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="px-2 py-1 text-xs font-bold bg-green-600 rounded">
-                        EVENT
-                      </span>
-                      <span className="text-sm text-gray-400">01/02/2024</span>
-                    </div>
-                    <h2 className="font-bold text-lg">Community Picnic</h2>
-                    <p className="text-gray-400 text-sm">
-                      Join us for a fun community picnic
-                    </p>
-                  </div>
-
-                  {/* Notice Card 2 */}
-                  <div className="bg-white/10 rounded-lg p-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="px-2 py-1 text-xs font-bold bg-yellow-600 rounded">
-                        MAINTENANCE
-                      </span>
-                      <span className="text-sm text-gray-400">12/20/2023</span>
-                    </div>
-                    <h2 className="font-bold text-lg">Annual Maintenance</h2>
-                    <p className="text-gray-400 text-sm">
-                      Expect water supply to be temporarily unavailable
-                    </p>
-                  </div>
-
-                  {/* Notice Card 3 */}
-                  <div className="bg-white/10 rounded-lg p-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="px-2 py-1 text-xs font-bold bg-red-600 rounded">
-                        EMERGENCY
-                      </span>
-                      <span className="text-sm text-gray-400">12/01/2023</span>
-                    </div>
-                    <h2 className="font-bold text-lg">Water Outage</h2>
-                    <p className="text-gray-400 text-sm">
-                      A water pipe burst, leaving no water supply. Please
-                      conserve water.
-                    </p>
-                  </div>
+                  {loading && (
+                    <p className="text-gray-400">Loading notices...</p>
+                  )}
+                  {error && !loading && (
+                    <p className="text-red-400">{error}</p>
+                  )}
+                  {!loading && !error && noticesData.length === 0 && (
+                    <p className="text-gray-400">No notices found.</p>
+                  )}
+                  {!loading &&
+                    !error &&
+          noticesData.map((notice) => (
+                      <div
+            key={notice.id}
+                        className="bg-white/10 rounded-lg p-4"
+                      >
+                        <div className="flex items-center justify-between mb-2">
+                          <span
+                            className={`px-2 py-1 text-xs font-bold ${getCategoryStyle(
+                              notice.category
+                            )} rounded`}
+                          >
+              {notice.category?.toUpperCase() || "GENERAL"}
+                          </span>
+                          <span className="text-sm text-gray-400">
+              {new Date(notice.created_at).toLocaleDateString()}
+                          </span>
+                        </div>
+            <h2 className="font-bold text-lg">{notice.title}</h2>
+                        <p className="text-gray-400 text-sm">
+              {notice.content}
+                        </p>
+                      </div>
+                    ))}
                 </>
               )}
 
-              {/* Polls Tab Content */}
               {activeTab === "polls" && (
                 <>
                   {pollsData.map((poll) => (
@@ -216,8 +296,6 @@ export default function NoticePage() {
                       <p className="text-gray-400 text-sm mb-3">
                         {poll.description}
                       </p>
-
-                      {/* Poll Options with Vote Counts */}
                       <div className="space-y-2">
                         {poll.options.map((option) => {
                           const voteCount = poll.votes[option] || 0;
@@ -229,7 +307,6 @@ export default function NoticePage() {
                             totalVotes > 0
                               ? Math.round((voteCount / totalVotes) * 100)
                               : 0;
-
                           return (
                             <div
                               key={option}
@@ -257,7 +334,6 @@ export default function NoticePage() {
               )}
             </div>
 
-            {/* Right Column (Filter box) */}
             <div className="bg-white/10 rounded-lg p-6">
               <h3 className="font-bold mb-4">Filter</h3>
               <div className="space-y-4">
@@ -299,40 +375,64 @@ export default function NoticePage() {
           </div>
         )}
 
-        {/* Create Notice Form */}
         {activeView === "notice" && (
           <div className="max-w-lg mx-auto bg-white/10 p-6 rounded-lg">
             <h2 className="text-xl font-bold mb-4">Create Notice</h2>
-            <input
-              type="text"
-              placeholder="Title"
-              className="w-full px-3 py-2 mb-3 bg-black rounded text-white"
-            />
-            <input
-              type="date"
-              placeholder="Date of expiry"
-              className="w-full px-3 py-2 mb-3 bg-black rounded text-white"
-            />
-            <textarea
-              placeholder="Description"
-              className="w-full px-3 py-2 mb-3 bg-black rounded text-white"
-              rows={4}
-            />
-            <div className="flex justify-between">
-              <button
-                onClick={() => setActiveView("default")}
-                className="px-4 py-2 bg-gray-600 rounded hover:bg-gray-500"
+            <form onSubmit={handlePublishNotice} className="space-y-4">
+              <input
+                type="text"
+                placeholder="Title"
+                value={noticeTitle}
+                onChange={(e) => setNoticeTitle(e.target.value)}
+                required
+                className="w-full px-3 py-2 bg-black rounded text-white"
+              />
+              <select
+                value={noticeCategory}
+                onChange={(e) => setNoticeCategory(e.target.value)}
+                required
+                className="w-full px-3 py-2 bg-black rounded text-white"
               >
-                Cancel
-              </button>
-              <button className="px-4 py-2 bg-teal-600 rounded hover:bg-teal-500">
-                Publish
-              </button>
-            </div>
+                <option value="Event">Event</option>
+                <option value="Maintenance">Maintenance</option>
+                <option value="Emergency">Emergency</option>
+                <option value="General">General</option>
+              </select>
+              <input
+                type="date"
+                value={noticeExpiry}
+                onChange={(e) => setNoticeExpiry(e.target.value)}
+                className="w-full px-3 py-2 bg-black rounded text-white"
+                placeholder="Date of expiry (optional)"
+              />
+              <textarea
+                placeholder="Description"
+                value={noticeDescription}
+                onChange={(e) => setNoticeDescription(e.target.value)}
+                required
+                className="w-full px-3 py-2 bg-black rounded text-white"
+                rows={4}
+              />
+              <div className="flex justify-between">
+                <button
+                  type="button"
+                  onClick={() => setActiveView("default")}
+                  className="px-4 py-2 bg-gray-600 rounded hover:bg-gray-500"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="px-4 py-2 bg-teal-600 rounded hover:bg-teal-500 disabled:bg-teal-800"
+                >
+                  {isSubmitting ? "Publishing..." : "Publish"}
+                </button>
+              </div>
+            </form>
           </div>
         )}
 
-        {/* Create Poll Form */}
         {activeView === "poll" && (
           <div className="max-w-lg mx-auto bg-white/10 p-6 rounded-lg">
             <h2 className="text-xl font-bold mb-4">Create Poll</h2>
